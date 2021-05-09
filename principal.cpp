@@ -6,6 +6,8 @@
  *      Author: algo2
  */
 
+#include "TP2.h"
+
 #include "Posicion.h"
 
 #include "Tablero.h"
@@ -16,13 +18,23 @@ using namespace std;
 
 int main () {
 
-	int largo = 5;
-	int ancho =5;
-	int profundidad =5;
+	TP2 codeando21;
+
+	codeando21.setLargo();
+
+	codeando21.setAncho();
+
+	codeando21.setProfundidad();
+
+	codeando21.setCantidadDeJugadores();
+
+	codeando21.setCantidadFichasEnLinea();
+
+	codeando21.setJugadores();
 
 	Tablero tablero;
 
-	tablero.inicilizaTablero(largo, ancho, profundidad);
+	tablero.inicilizaTablero(codeando21.getLargo(), codeando21.getAncho(), codeando21.getProfundidad());
 
 	return 0;
 }
