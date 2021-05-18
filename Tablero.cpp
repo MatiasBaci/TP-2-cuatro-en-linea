@@ -50,4 +50,21 @@ void Tablero::inicilizaTablero(int l, int a, int p) {
 
 }
 
+Tablero::~Tablero() {
+
+	for (int i = 0; i < largo; i++) {
+
+		for (int j = 0; j < ancho; j++) {
+
+			delete[] tablero[i][j];
+		}
+
+	delete[] tablero [i];
+
+	}
+
+	delete[] tablero;
+
+}
+
 

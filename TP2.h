@@ -10,6 +10,10 @@
 
 #include <string>
 
+#include "Jugadores.h"
+
+#include "Jugador.h"
+
 class TP2 {
 
 	private:
@@ -25,8 +29,6 @@ class TP2 {
 		int cantidadFichasEnLinea;
 
 		int cantidadDeJugadores;
-
-		std::string jugadores [5];
 
 	public:
 
@@ -48,11 +50,20 @@ class TP2 {
 		 */
 		void setAncho ();
 
+
+
 		/*
 		 * pre:
 		 * pos: Carga la profundidad del tablero entre 5 y 10 lugares
 		 */
 		void setProfundidad ();
+
+		/*
+		 * pre:
+		 * pos: Carga cantidad de fichas iniciales de cada jugador entre 20 y 100.
+		 */
+		void setCantidadDeFichas ();
+
 
 		/*
 		 * pre:
@@ -65,12 +76,6 @@ class TP2 {
 		 * pos: Carga la cantidad de jugadores, minimo 2 y maximo 5
 		 */
 		void setCantidadDeJugadores ();
-
-		/*
-		 * pre:
-		 * pos: Carga los nombres de los jugadores
-		 */
-		void setJugadores ();
 
 		/*
 		 * pre:

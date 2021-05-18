@@ -36,6 +36,12 @@ class Tablero {
 		 */
 		void inicilizaTablero (int l, int a, int p);
 
+		/*
+		 * pre : Existe el tablero
+		 * pos: Destruye el tablero
+		 */
+		~Tablero ();
+
 };
 
 

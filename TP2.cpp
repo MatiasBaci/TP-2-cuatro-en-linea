@@ -1,6 +1,8 @@
 
 #include "TP2.h"
 
+#include "Jugadores.h"
+
 #include <iostream>
 
 #include <string>
@@ -21,23 +23,7 @@ TP2::TP2() {
 
 }
 
-void TP2::setJugadores() {
 
-	std::string jugador;
-
-	std::cin.ignore();
-
-	for (int i = 0; i < cantidadDeJugadores; i++) {
-
-		std::cout << "Ingrese el nombre del jugador " << i + 1 << " :";
-
-		std::getline  (std::cin, jugador);
-
-        this->jugadores[i] = jugador;
-
-	}
-
-}
 
 void TP2::setLargo () {
 
@@ -51,7 +37,7 @@ void TP2::setLargo () {
 
 		std::cout << std::endl;
 
-	} while (l < 5 || l > 10);
+	} while ((l < 5) || (l > 10));
 
 	this->largo = l;
 }
@@ -91,7 +77,7 @@ void TP2::setProfundidad () {
 
 }
 
-void TP2::setCantidadFichasEnLinea () {
+void TP2::setCantidadDeFichas () {
 
 int cantFichas;
 
@@ -108,6 +94,25 @@ do {
 this->cantidadDeFichas = cantFichas;
 
 }
+
+void TP2::setCantidadFichasEnLinea() {
+
+	int cantFichas;
+
+	do {
+
+		std::cout << "Ingrese la cantidad de fichas en linea necesarias para ganar (entre 3 y 8) : ";
+
+		std::cin >> cantFichas;
+
+		std::cout << std::endl;
+
+	} while (cantFichas < 3 || cantFichas > 8);
+
+	this->cantidadFichasEnLinea = cantFichas;
+
+}
+
 
 void TP2::setCantidadDeJugadores () {
 

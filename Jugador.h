@@ -10,6 +10,8 @@
 
 #include <string>
 
+#include "Cartas del Jugador.h"
+
 class Jugador {
 
 	private:
@@ -22,26 +24,58 @@ class Jugador {
 
 		unsigned int juegosGanados;
 
-		int cartas [3];
+		carta* misCartas;
+
+		Jugador *sig;
+
+		Jugador *ant;
 
 	public:
+
+		/*
+		 * pre: No tiene
+		 * pos: Crea un jugador sin argumentos
+		 */
+		Jugador ();
 
 		/*
 		* pre: No tiene
 		* pos: Crea un jugador.
 		*/
-		Jugador (std::string name, unsigned int fichasIniciales, char fficha);
-
-
+		Jugador (std::string, unsigned int, char);
 
 		/*
 		 * pre:
+		 * pos: Avanza un jugador.
+		 */
+		Jugador* getSig();
+
+		/*
+		 * pre: Existe un jugador
+		 * pos: Devuelve un puntero al jugador anterior
+		 */
+		Jugador* getAnt();
+
+		/*
+		 * pre:
+		 * pos: Hace que un jugador apunte al siguiente jugador.
+		 */
+		void setSig (Jugador*);
+
+		/*
+		 * pre:
+		 * pos: Hace que un jugador apunte al jugador anterior.
+		 */
+		void setAnt (Jugador*);
+
+		/*
+		 * pre: Existe el jugador
 		 * pos: Devuelve el nombre del jugador.
 		 */
 		std::string getNombre ();
 
 		/*
-		 * pre:
+		 * pre: Existe jugador
 		 * pos: Devuelve la ficha del jugador
 		 */
 		char getFicha ();
@@ -59,13 +93,13 @@ class Jugador {
 		unsigned int getJuegosGanados ();
 
 		/*
-		 * pre:
+		 * pre: Recibe la variacion en la cantidad de fichas.
 		 * pos: Actualiza las fichas que le quedan al jugador.
 		 */
-		void setFichasRestantes ();
+		void setFichasRestantes (int);
 
 		/*
-		 * pre:
+		 * pre: Suma un juego ganado al jugador
 		 * pos: Actualiza juegos ganados por el jugador.
 		 */
 		void setJuegosGanados ();
