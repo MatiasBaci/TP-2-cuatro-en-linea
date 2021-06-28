@@ -18,6 +18,8 @@
 
 #include "Cartas del Jugador.h"
 
+#include "MazoDeCartas.h"
+
 #include "Jugador.h"
 
 #include <string>
@@ -30,9 +32,39 @@ int main () {
 
 	presentacion ();
 
-	TP2 codeando21;
+	TP2* codeando21 = new TP2();
 
-	opcionesDeJuego (&codeando21);
+	opcionesDeJuego(codeando21);
+
+	cout << "LLega hasta aca 0" << endl;
+
+	codeando21->getTablero()->inicializaTablero(codeando21->getLargo(), codeando21->getAncho(), codeando21->getProfundidad());
+
+	cout << "LLega hasta aca 2" << endl;
+
+/*	for (int i = 0; i < codeando21.getCantidadDeJugadores(); i++) {
+
+		cout << "LLega hasta aca" << endl;
+
+		codeando21.getJugadores()->altaDeUnJugador();
+
+		codeando21.getJugadores()->altaDeUnJugador();
+
+		cout << "LLega hasta aca tambien" << endl; }*/
+
+	/*	codeando21.getJugadores().getJugadorN(i)->altaDeUnaCarta();
+
+		codeando21.getJugadores().getJugadorN(i)->altaDeUnaCarta();
+
+		codeando21.getJugadores().getJugadorN(i)->altaDeUnaCarta();
+
+		codeando21.getJugadores().getJugadorN(i)->emite();*/
+
+//	}
+
+
+
+
 
 
 //	codeando21.setLargo();
@@ -47,9 +79,9 @@ int main () {
 
 	codeando21.setJugadores();*/
 
-	Tablero tablero;
+//	Tablero tablero;
 
-	tablero.inicilizaTablero(codeando21.getLargo(), codeando21.getAncho(), codeando21.getProfundidad());
+//	tablero.inicilizaTablero(codeando21.getLargo(), codeando21.getAncho(), codeando21.getProfundidad());
 
 /*	cartasDelJugador msCartas;
 
@@ -88,13 +120,41 @@ int main () {
 std::cout << Alex.getNombre() << " tiene "
 		  << Alex.getFichasRestantes() << " fichas " << " y juega con la " << Alex.getFicha();*/
 
-Jugadores SanLorenzo;
+MazoDeCartas* mazo = new MazoDeCartas();
 
-for (int i = 0; i < codeando21.getCantidadDeJugadores(); i++) {
+for (int i = 0; i < 50; i++) {
 
-	SanLorenzo.alta();
+	mazo->agregarUnaCarta();
 
 }
+
+/*for (int i = 0; i < 40; i++){
+
+	cout << mazo.sacarUnaCarta() << endl;
+
+}*/
+
+
+Jugadores* SanLorenzo = new Jugadores();
+
+for (int i = 0; i < codeando21->getCantidadDeJugadores(); i++) {
+
+	SanLorenzo->altaDeUnJugador();
+
+	SanLorenzo->getJugadorN(i)->altaDeUnaCarta(mazo);
+
+	SanLorenzo->getJugadorN(i)->altaDeUnaCarta(mazo);
+
+	SanLorenzo->getJugadorN(i)->altaDeUnaCarta(mazo);
+
+	SanLorenzo->getJugadorN(i)->emite();
+
+}
+
+
+
+
+
 
 /*SanLorenzo.alta();
 
@@ -102,9 +162,9 @@ SanLorenzo.alta();
 
 SanLorenzo.alta();*/
 
-SanLorenzo.emitePU();
+/*SanLorenzo.emitePU();
 
-SanLorenzo.emiteUP();
+SanLorenzo.emiteUP();*/
 
 
 	return 0;

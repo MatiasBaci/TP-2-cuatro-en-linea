@@ -1,7 +1,7 @@
 /*
- * Tablero.h
+ * Tablero2.h
  *
- *  Created on: Apr 30, 2021
+ *  Created on: Jun 20, 2021
  *      Author: algo2
  */
 
@@ -10,31 +10,41 @@
 
 #include "Posicion.h"
 
+#include "Lista.h"
+
+#include "Nodo.h"
+
 class Tablero {
 
 	private:
 
-		int largo;
-
-		int ancho;
-
-		int profundidad;
-
-		Posicion ***tablero;
+		Lista<Lista<Lista<Posicion*>*>*>* tablero;
 
 	public:
 
 		/*
 		 * pre: No tiene.
-		 * pos: Devuelve un puntero a un tablero, sin dimensiones
+		 * post: Devuelve un puntero a un tablero, sin dimensiones
 		 */
 		Tablero ();
 
 		/*
 		 * pre: Existe el puntero al tablero
-		 * pos: Genera un tablero con las dimensiones dadas y lo iniciliza.
+		 * post: Genera un tablero con las dimensiones dadas y lo iniciliza.
 		 */
-		void inicilizaTablero (int l, int a, int p);
+		void inicializaTablero (int x, int y, int z);
+
+		/*
+		 * pre: Recibe una posicion valida en el tablero
+		 * post: Devuelve un puntero a esa posicion
+		 */
+		Posicion* buscarPosicion (int x, int y, int z);
+
+		/*
+		 * pre: Recibe la ultima jugada, la cantidad necesaria de fichas en linea para ganar
+		 * post: Indica si hay un ganador
+		 */
+		bool hayGanador (Posicion* ultimaJugada, int cantidadDeFichasParaGanar);
 
 		/*
 		 * pre : Existe el tablero

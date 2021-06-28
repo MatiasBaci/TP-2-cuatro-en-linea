@@ -12,23 +12,31 @@
 
 #include "Jugadores.h"
 
+#include "Lista.h"
+
 #include "Jugador.h"
+
+#include "Tablero.h"
 
 class TP2 {
 
 	private:
 
-		int largo;
+		int largo_Y;
 
-		int ancho;
+		int ancho_X;
 
-		int profundidad;
+		int profundidad_Z;
 
 		int cantidadDeFichas;
 
 		int cantidadFichasEnLinea;
 
 		int cantidadDeJugadores;
+
+		Tablero* tablero;
+
+		Jugadores *players;
 
 	public:
 
@@ -79,6 +87,12 @@ class TP2 {
 
 		/*
 		 * pre:
+		 * pos: Modifica players
+		 */
+		void setJugadores (Jugadores*);
+
+		/*
+		 * pre:
 		 * pos: Devuelve el largo del tablero
 		 */
 		int getLargo ();
@@ -107,6 +121,17 @@ class TP2 {
 		 */
 		int getCantidadDeJugadores ();
 
+		/*
+		 * pre:
+		 * pos: Devuelve un puntero al tablero
+		 */
+		Tablero* getTablero ();
+
+		/*
+		 * pre:
+		 * pos: Devuelve un puntero a la lista de jugadores
+		 */
+		Jugadores* getJugadores ();
 
 };
 
