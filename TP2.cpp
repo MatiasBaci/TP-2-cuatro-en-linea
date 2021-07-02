@@ -27,7 +27,9 @@ TP2::TP2() {
 
     this->players = NULL;
 
-    this->tablero =NULL;
+	this->tablero = NULL;
+
+    this->tablero = new Tablero();
 }
 
 

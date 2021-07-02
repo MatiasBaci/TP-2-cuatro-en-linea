@@ -8,7 +8,7 @@
 
 #include <cstdlib>
 
-carta::carta () {
+Carta::Carta () {
 
 	this->info = rand() % 5 + 1;
 
@@ -16,19 +16,19 @@ carta::carta () {
 
 }
 
-int  carta::getInfo() {
+int  Carta::getInfo() {
 
 	return info;
 
 }
 
-carta* carta::getSig() {
+Carta* Carta::getSig() {
 
 	return sig;
 
 }
 
-void carta::setSig(carta* n) {
+void Carta::setSig(Carta* n) {
 
 	this->sig = n;
 

@@ -26,6 +26,8 @@ Tablero::Tablero() {
 
 void Tablero::inicializaTablero(int x, int y, int z) {
 
+	Lista<Lista<Lista<Posicion * > * > * > * tableroAux = NULL;
+	tableroAux = new Lista<Lista<Lista<Posicion * > * > * > ();
 	for (int i = 0; i < x; i++) {
 
 		Lista<Lista<Posicion*>*>* nivel2 = new Lista<Lista<Posicion*>*>();
@@ -50,21 +52,15 @@ void Tablero::inicializaTablero(int x, int y, int z) {
 			nivel2->agregar(nivel3);
 		}
 
-		cout << "LLega a nivel 0.1" << endl;
-
-		this->tablero->agregar(nivel2);
-
-		cout << "Llega a t1" << endl;
+		tableroAux->agregar(nivel2);
 
 	}
 
+	tableroAux->iniciarCursor();
 
-	tablero->iniciarCursor();
+	while(tableroAux->avanzarCursor()) {
 
-
-	while(tablero->avanzarCursor()) {
-
-		Lista<Lista<Posicion*>*>* fila = tablero->obtenerCursor();
+		Lista<Lista<Posicion*>*>* fila = tableroAux->obtenerCursor();
 
 		fila->iniciarCursor();
 
@@ -72,8 +68,7 @@ void Tablero::inicializaTablero(int x, int y, int z) {
 
 			Lista<Posicion*>* columna = fila->obtenerCursor();
 
-			columna->obtenerCursor();
-
+			columna->iniciarCursor();
 			while(columna->avanzarCursor()) {
 
 				Posicion* posicion = columna->obtenerCursor();
@@ -84,23 +79,16 @@ void Tablero::inicializaTablero(int x, int y, int z) {
 
 						for(int k = -1; k <= 1; k++){
 
-							Posicion* posicionVecina = this->buscarPosicion(posicion->getX() + i,
-
-							posicion->getY() + j, posicion->getZ() + k);
-
+							Posicion* posicionVecina = this->buscarPosicion(posicion->getX() + i, posicion->getY() + j, posicion->getZ() + k);
 							posicion->setVecino(posicionVecina, i, j, k);
 
-							cout << "K es " << k << endl;
-
 						}
-
-						cout << "Llega a t2" << endl;
-
 					}
 				}
 			}
 		}
 	}
+	this->tablero = tableroAux;
 }
 
 Posicion* Tablero::buscarPosicion (int x, int y, int z){
@@ -109,25 +97,19 @@ Posicion* Tablero::buscarPosicion (int x, int y, int z){
 
 	tablero->iniciarCursor();
 
-	while((tablero->avanzarCursor()) &&
-
-		  posicionBuscada != NULL) {
+	while((tablero->avanzarCursor()) && posicionBuscada != NULL) {
 
 		Lista<Lista<Posicion*>*>* fila = tablero->obtenerCursor();
 
 		fila->iniciarCursor();
 
-		while((fila->avanzarCursor()) &&
-
-			 posicionBuscada != NULL) {
+		while((fila->avanzarCursor()) && posicionBuscada != NULL) {
 
 			Lista<Posicion*>* columna = fila->obtenerCursor();
 
-			columna->obtenerCursor();
+			columna->iniciarCursor();
 
-			while((columna->avanzarCursor()) &&
-
-				   posicionBuscada != NULL) {
+			while((columna->avanzarCursor()) && posicionBuscada != NULL) {
 
 				Posicion* posicion = columna->obtenerCursor();
 
