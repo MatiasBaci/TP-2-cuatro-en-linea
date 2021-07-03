@@ -1,5 +1,5 @@
 /*
- * Tablero2.h
+ * Tablero.h
  *
  *  Created on: Jun 20, 2021
  *      Author: algo2

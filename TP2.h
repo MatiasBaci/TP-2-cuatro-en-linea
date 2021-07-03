@@ -22,7 +22,7 @@ class TP2 {
 
 	private:
 
-		int largo_Y;
+		int alto_y;
 
 		int ancho_X;
 
@@ -50,7 +50,7 @@ class TP2 {
 		 * pre:
 		 * pos: Carga el largo del tablero entre 5 y 10 lugares
 		 */
-		void setLargo ();
+		void setAltura ();
 
 		/*
 		 * pre:
@@ -95,7 +95,7 @@ class TP2 {
 		 * pre:
 		 * pos: Devuelve el largo del tablero
 		 */
-		int getLargo ();
+		int getAltura ();
 
 		/*
 		 * pre:

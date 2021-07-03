@@ -1,5 +1,5 @@
 /*
- * Tablero2.cpp
+ * Tablero.cpp
  *
  *  Created on: Jun 20, 2021
  *      Author: algo2
@@ -195,6 +195,13 @@ bool Tablero::hayGanador (Posicion* ultimaJugada, int cantidadDeFichasParaGanar)
 
 	return gano;
 }
+
+
+bool colocarFicha(char ficha, int x, int y, int z) {
+
+	
+}
+
 
 Tablero::~Tablero() {
 

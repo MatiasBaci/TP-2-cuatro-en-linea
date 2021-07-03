@@ -13,7 +13,7 @@ using namespace std;
 
 TP2::TP2() {
 
-	this->largo_Y = 10;
+	this->alto_y = 10;
 
 	this->ancho_X = 10;
 
@@ -32,21 +32,21 @@ TP2::TP2() {
 
 
 
-void TP2::setLargo () {
+void TP2::setAltura () {
 
-	int l;
+	int h;
 
 	do {
 
 		std::cout << "Ingrese el largo del tablero (entre 5 y 10): ";
 
-		std::cin >> l;
+		std::cin >> h;
 
 		std::cout << std::endl;
 
-	} while ((l < 5) || (l > 10));
+	} while ((h < 5) || (h > 10));
 
-	this->largo_Y = l;
+	this->alto_y = h;
 }
 
 void TP2::setAncho () {
@@ -168,9 +168,9 @@ Tablero* TP2::getTablero() {
 
 }
 
-int TP2::getLargo () {
+int TP2::getAltura () {
 
-	return (this->largo_Y);
+	return (this->alto_y);
 
 }
 
