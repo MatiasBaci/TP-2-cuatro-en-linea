@@ -101,7 +101,7 @@ class Posicion {
 	 * Precondicion: No tiene.
 	 * Postcondicion: Devuelve la ficha que contiene.
 	 */
-		char getFicha();
+		char queFicha();
 
 	/*
 	 * Precondicion: El lugar debe estar libre.

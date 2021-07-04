@@ -23,7 +23,7 @@ void cartasDelJugador::alta() {
 
 	if (this->cantidadDeCartas < 3) {
 
-	carta *aux = cartaDelJugador;
+	Carta *aux = cartaDelJugador;
 
 		while ((aux) && (aux->getSig())) {
 
@@ -32,11 +32,11 @@ void cartasDelJugador::alta() {
 		}
 		if (aux) {
 
-			aux->setSig(new carta());
+			aux->setSig(new Carta());
 
 		} else {
 
-			cartaDelJugador = new carta ();
+			cartaDelJugador = new Carta ();
 
 		}
 
@@ -52,7 +52,7 @@ void cartasDelJugador::baja(int cartaSeleccionada) {
 
 		if((cartaDelJugador->getInfo() != cartaSeleccionada) && (cartaDelJugador->getSig())) {
 
-			carta *aux1 = cartaDelJugador, *aux2 = cartaDelJugador->getSig();
+			Carta *aux1 = cartaDelJugador, *aux2 = cartaDelJugador->getSig();
 
 			while ((aux2->getInfo() != cartaSeleccionada) && (aux2->getSig() != NULL)) {
 
@@ -74,7 +74,7 @@ void cartasDelJugador::baja(int cartaSeleccionada) {
 
 			if (cartaDelJugador->getInfo() == cartaSeleccionada) {
 
-				carta *aux = cartaDelJugador;
+				Carta *aux = cartaDelJugador;
 
 				cartaDelJugador = cartaDelJugador->getSig();
 
@@ -92,7 +92,7 @@ void cartasDelJugador::baja(int cartaSeleccionada) {
 
 bool cartasDelJugador::busca(int cartaSeleccionada) {
 
-	carta *aux = cartaDelJugador;
+	Carta *aux = cartaDelJugador;
 
 	while ((aux) && (aux->getInfo() != cartaSeleccionada)){
 
@@ -114,7 +114,7 @@ bool cartasDelJugador::busca(int cartaSeleccionada) {
 
 void cartasDelJugador::emite() const {
 
-	carta *aux = cartaDelJugador;
+	Carta *aux = cartaDelJugador;
 
 	while (aux) {
 
@@ -148,7 +148,7 @@ cartasDelJugador::~cartasDelJugador() {
 
 	if (cartaDelJugador) {
 
-		carta *aux = cartaDelJugador;
+		Carta *aux = cartaDelJugador;
 
 		while (aux) {
 

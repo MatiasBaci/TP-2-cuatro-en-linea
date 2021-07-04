@@ -29,16 +29,34 @@ class Jugadores {
 		Jugadores();
 
 		/*
+		 * pre :Existe por lo menos un jugador
+		 * pos : Devuelve un puntero al jugador
+		 */
+		Jugador* getListaDeJugadores ();
+
+		/*
+		* pre :Existe por lo menos un jugador
+		* pos : Devuelve un puntero al primer jugador
+		*/
+		Jugador* getJugadorN (int n);
+
+		/*
 		 * pre : Existe la lista (puntero).
 		 * pos: Da de alta un jugador al final de la lista.
 		 */
-		void alta ();
+		void altaDeUnJugador (int);
+
+		/*
+		 * pre : Existe la lista (puntero).
+		 * pos: Avanza un jugador en la lista..
+		 */
+		Jugador* avanzaUnJugador ();
+
 
 		/*
 		 * pre: Existe la lista
 		 * pos: Muestra por consola los nombres de los jugadores del primero al ultimo
 		 */
-
 		void emitePU () const;
 
 		/*

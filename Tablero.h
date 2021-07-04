@@ -1,5 +1,5 @@
 /*
- * Tablero.h
+ * Tablero2.h
  *
  *  Created on: Jun 20, 2021
  *      Author: algo2
@@ -45,6 +45,12 @@ class Tablero {
 		 * post: Indica si hay un ganador
 		 */
 		bool hayGanador (Posicion* ultimaJugada, int cantidadDeFichasParaGanar);
+
+		/*
+		 * pre: Recibe dos coordenadas (X y Z) validas.
+		 * post: Devuleve un bool que indica si hay lugar en esa columna
+		 */
+		bool posicionDisponible (int, int);
 
 		/*
 		 * pre : Existe el tablero

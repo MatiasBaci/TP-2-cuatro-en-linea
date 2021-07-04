@@ -22,21 +22,23 @@ class TP2 {
 
 	private:
 
-		int alto_y;
+		int largo_Y;
 
 		int ancho_X;
 
 		int profundidad_Z;
 
-		int cantidadDeFichas;
+		int cantidadDeFichasIniciales;
 
 		int cantidadFichasEnLinea;
 
 		int cantidadDeJugadores;
 
-		Tablero* tablero;
+		bool jugarOrdenInverso;
 
-		Jugadores *players;
+		Tablero* tableroDeJuego;
+
+		Jugadores* players;
 
 	public:
 
@@ -48,13 +50,13 @@ class TP2 {
 
 		/*
 		 * pre:
-		 * pos: Carga el largo del tablero entre 5 y 10 lugares
+		 * pos: Carga el largo del tableroDeJuego entre 5 y 10 lugares
 		 */
-		void setAltura ();
+		void setLargo ();
 
 		/*
 		 * pre:
-		 * pos: Carga el ancho del tablero entre 5 y 10 lugares
+		 * pos: Carga el ancho del tableroDeJuego entre 5 y 10 lugares
 		 */
 		void setAncho ();
 
@@ -62,7 +64,7 @@ class TP2 {
 
 		/*
 		 * pre:
-		 * pos: Carga la profundidad del tablero entre 5 y 10 lugares
+		 * pos: Carga la profundidad del tableroDeJuego entre 5 y 10 lugares
 		 */
 		void setProfundidad ();
 
@@ -70,7 +72,7 @@ class TP2 {
 		 * pre:
 		 * pos: Carga cantidad de fichas iniciales de cada jugador entre 20 y 100.
 		 */
-		void setCantidadDeFichas ();
+		void setCantidadDeFichasIniciales ();
 
 
 		/*
@@ -86,26 +88,32 @@ class TP2 {
 		void setCantidadDeJugadores ();
 
 		/*
-		 * pre:
-		 * pos: Modifica players
+		 * pre: No tiene
+		 * pos: Da de alta a los jugadores
 		 */
-		void setJugadores (Jugadores*);
+		void setJugadores ();
+
+		/*
+		 * pre: No tiene
+		 * post: Cambia el orden de juego
+		 */
+		void cambiarOrdenDeJuego ();
 
 		/*
 		 * pre:
-		 * pos: Devuelve el largo del tablero
+		 * pos: Devuelve el largo del tableroDeJuego
 		 */
-		int getAltura ();
+		int getLargo ();
 
 		/*
 		 * pre:
-		 * pos: Devuelve el ancho del tablero
+		 * pos: Devuelve el ancho del tableroDeJuego
 		 */
 		int getAncho ();
 
 		/*
 		 * pre:
-		 * pos: Devuelve la profundidad del tablero
+		 * pos: Devuelve la profundidad del tableroDeJuego
 		 */
 		int getProfundidad ();
 
@@ -117,13 +125,20 @@ class TP2 {
 
 		/*
 		 * pre:
+		 * pos: Carga cantidad de fichas iniciales de cada jugador entre 20 y 100.
+		 */
+		int getCantidadDeFichasIniciales ();
+
+
+		/*
+		 * pre:
 		 * pos: Devuelve la cantidad de jugadores
 		 */
 		int getCantidadDeJugadores ();
 
 		/*
 		 * pre:
-		 * pos: Devuelve un puntero al tablero
+		 * pos: Devuelve un puntero al tableroDeJuego
 		 */
 		Tablero* getTablero ();
 
@@ -132,6 +147,30 @@ class TP2 {
 		 * pos: Devuelve un puntero a la lista de jugadores
 		 */
 		Jugadores* getJugadores ();
+
+		/*
+		 * pre:
+		 * post:
+		 */
+		Posicion* jugar ();
+
+		/*
+		 * pre: Existe tablero y jugadores
+		 * post: Solicita una jugada y la valida
+		 */
+		Posicion* solicitarJugada (Jugador*, Tablero*);
+
+		/*
+		 * pre: La jugada es valida
+		 * post: Ubica la ficha en la posicion
+		 */
+		Posicion* ubicarFicha (Tablero*, Jugador*, Posicion*);
+
+		/*
+		 * pre: No tiene
+		 * post: Crea el mazo de cartas
+		 */
+		MazoDeCartas* crearMazoDeCartas();
 
 };
 

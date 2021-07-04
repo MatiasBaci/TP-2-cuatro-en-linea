@@ -11,17 +11,17 @@
 #include "TP2.h"
 
 /*
- * Presentacion del juego
+ * pre: No tiene
+ * post: Presenta el juego
  */
 void presentacion ();
 
 /*
- * Permite seleccionar los parametros iniciales del juego
+ * pre: No tiene
+ * post: Permite seleccionar los parametros iniciales del juego
  */
 
 void opcionesDeJuego (TP2*);
-
-
 
 
 #endif /* SRC_INTERACCIONES_H_ */

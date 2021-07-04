@@ -36,11 +36,32 @@ int main () {
 
 	opcionesDeJuego(codeando21);
 
-	cout << "LLega hasta aca 0" << endl;
+	MazoDeCartas* mazo = codeando21->crearMazoDeCartas();
+
+	cout << "LLega hasta aca 1" << endl;
 
 	codeando21->getTablero()->inicializaTablero(codeando21->getLargo(), codeando21->getAncho(), codeando21->getProfundidad());
 
 	cout << "LLega hasta aca 2" << endl;
+
+	codeando21->setJugadores();
+
+	cout << "El cursor esta en " << codeando21->getJugadores()->getListaDeJugadores()->getNombre() << endl;
+
+	Posicion* posicionJugada;
+
+	posicionJugada = codeando21->jugar();
+
+	while(!codeando21->getTablero()->hayGanador(posicionJugada, codeando21->getCantidadFichasEnLinea()))
+
+		codeando21->getJugadores()->getListaDeJugadores()->altaDeUnaCarta(mazo);
+
+		codeando21->getJugadores()->avanzaUnJugador();
+
+		posicionJugada = codeando21->jugar();
+
+	};
+
 
 /*	for (int i = 0; i < codeando21.getCantidadDeJugadores(); i++) {
 
@@ -113,20 +134,20 @@ int main () {
 
 	msCartas.alta();
 
-	msCartas.emite();*/;
+	msCartas.emite();*/
 
 /*Jugador Alex ("Jose", 3, 'A');
 
 std::cout << Alex.getNombre() << " tiene "
 		  << Alex.getFichasRestantes() << " fichas " << " y juega con la " << Alex.getFicha();*/
 
-MazoDeCartas* mazo = new MazoDeCartas();
+/*MazoDeCartas* mazo = new MazoDeCartas();
 
 for (int i = 0; i < 50; i++) {
 
 	mazo->agregarUnaCarta();
 
-}
+}*/
 
 /*for (int i = 0; i < 40; i++){
 
@@ -134,12 +155,14 @@ for (int i = 0; i < 50; i++) {
 
 }*/
 
-
+/*
 Jugadores* SanLorenzo = new Jugadores();
+
+cout << "Hay " << codeando21->getCantidadDeJugadores() << " jugadores" << endl;
 
 for (int i = 0; i < codeando21->getCantidadDeJugadores(); i++) {
 
-	SanLorenzo->altaDeUnJugador();
+	SanLorenzo->altaDeUnJugador(codeando21->getCantidadDeFichasIniciales());
 
 	SanLorenzo->getJugadorN(i)->altaDeUnaCarta(mazo);
 
@@ -149,7 +172,7 @@ for (int i = 0; i < codeando21->getCantidadDeJugadores(); i++) {
 
 	SanLorenzo->getJugadorN(i)->emite();
 
-}
+}*/
 
 
 

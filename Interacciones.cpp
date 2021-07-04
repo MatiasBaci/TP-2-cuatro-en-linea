@@ -9,6 +9,8 @@
 
 #include "Interacciones.h"
 
+#include "Tablero.h"
+
 #include "TP2.h"
 
 void presentacion () {
@@ -53,8 +55,6 @@ void opcionesDeJuego (TP2* n) {
 
 	if ((opcion == 's') || (opcion == 'S')) {
 
-
-
 		n->setLargo();
 
 		n->setAncho();
@@ -64,9 +64,6 @@ void opcionesDeJuego (TP2* n) {
 		n->setCantidadDeJugadores();
 
 		n->setCantidadFichasEnLinea();
-
-
-
 	}
-
 }
+

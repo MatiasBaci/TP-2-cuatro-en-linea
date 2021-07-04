@@ -27,13 +27,11 @@ Jugadores::Jugadores() {
 
 }
 
-void Jugadores::alta() {
+void Jugadores::altaDeUnJugador(int cantFichas) {
 
 	string nombre;
 
-	unsigned int cantFichas = 20;
-
-	char ficha = 'A';
+	char ficha = (char)(this->cantidadDeJugadores + 64);
 
 	if (this->cantidadDeJugadores < 6) {
 
@@ -53,6 +51,8 @@ void Jugadores::alta() {
 
 			primero->setAnt(ultimo);
 
+			this->listaDeJugadores = this->primero;
+
 		} else {
 
 			ultimo->setSig(nuevo);
@@ -70,6 +70,35 @@ void Jugadores::alta() {
 		this->cantidadDeJugadores++;
 
 	}
+
+}
+
+Jugador* Jugadores::avanzaUnJugador() {
+
+	this->listaDeJugadores = listaDeJugadores->getSig();
+
+	return (this->listaDeJugadores);
+
+}
+
+Jugador* Jugadores::getListaDeJugadores () {
+
+	return (this->listaDeJugadores);
+
+}
+
+Jugador* Jugadores::getJugadorN(int n) {
+
+	Jugador *jugadorN = new Jugador ();
+
+	jugadorN = primero;
+
+	for (int j = 0; j < n; j++) {
+
+		jugadorN = jugadorN->getSig();
+	}
+
+	return (jugadorN);
 
 }
 
@@ -96,6 +125,8 @@ void Jugadores::emitePU () const {
 	}
 
 }
+
+
 
 void Jugadores::emiteUP () const {
 
@@ -131,7 +162,7 @@ Jugadores::~Jugadores() {
 
 		Jugador *aux = listaDeJugadores;
 
-		while (aux) {
+		for (int i = 0; i < this->cantidadDeJugadores; i++) {
 
 			listaDeJugadores = listaDeJugadores->getSig();
 

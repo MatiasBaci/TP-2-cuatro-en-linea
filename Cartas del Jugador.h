@@ -16,7 +16,7 @@ class cartasDelJugador {
 
 		int cantidadDeCartas;
 
-		carta* cartaDelJugador;
+		Carta* cartaDelJugador;
 
 	public:
 

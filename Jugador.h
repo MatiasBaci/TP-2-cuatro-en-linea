@@ -10,6 +10,8 @@
 
 #include <string>
 
+#include "MazoDeCartas.h"
+
 #include "Cartas del Jugador.h"
 
 class Jugador {
@@ -24,7 +26,9 @@ class Jugador {
 
 		unsigned int juegosGanados;
 
-		carta* misCartas;
+		int cantidadDeCartas;
+
+		Carta* misCartas;
 
 		Jugador *sig;
 
@@ -45,6 +49,11 @@ class Jugador {
 		Jugador (std::string, unsigned int, char);
 
 		/*
+		 * post: Destructor
+		 */
+		~Jugador ();
+
+		/*
 		 * pre:
 		 * pos: Avanza un jugador.
 		 */
@@ -61,6 +70,18 @@ class Jugador {
 		 * pos: Hace que un jugador apunte al siguiente jugador.
 		 */
 		void setSig (Jugador*);
+
+		/*
+		 * pre: Existe un jugador
+		 * pos: Agrega una carta al jugador
+		 */
+		void altaDeUnaCarta (MazoDeCartas*);
+
+		/*
+		 * pre: Existe el jugador
+		 * pos: Emite todas las cartas del jugador
+		 */
+		void emite () const;
 
 		/*
 		 * pre:

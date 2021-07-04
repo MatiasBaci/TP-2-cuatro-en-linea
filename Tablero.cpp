@@ -1,5 +1,5 @@
 /*
- * Tablero.cpp
+ * Tablero2.cpp
  *
  *  Created on: Jun 20, 2021
  *      Author: algo2
@@ -26,8 +26,10 @@ Tablero::Tablero() {
 
 void Tablero::inicializaTablero(int x, int y, int z) {
 
-	Lista<Lista<Lista<Posicion * > * > * > * tableroAux = NULL;
-	tableroAux = new Lista<Lista<Lista<Posicion * > * > * > ();
+	Lista<Lista<Lista<Posicion*>*>*>* tableroAux = NULL;
+
+	tableroAux = new Lista<Lista<Lista<Posicion*>*>*>();
+
 	for (int i = 0; i < x; i++) {
 
 		Lista<Lista<Posicion*>*>* nivel2 = new Lista<Lista<Posicion*>*>();
@@ -58,9 +60,9 @@ void Tablero::inicializaTablero(int x, int y, int z) {
 
 	tableroAux->iniciarCursor();
 
-	while(tableroAux->avanzarCursor()) {
+	while(tablero->avanzarCursor()) {
 
-		Lista<Lista<Posicion*>*>* fila = tableroAux->obtenerCursor();
+		Lista<Lista<Posicion*>*>* fila = tablero->obtenerCursor();
 
 		fila->iniciarCursor();
 
@@ -69,6 +71,7 @@ void Tablero::inicializaTablero(int x, int y, int z) {
 			Lista<Posicion*>* columna = fila->obtenerCursor();
 
 			columna->iniciarCursor();
+
 			while(columna->avanzarCursor()) {
 
 				Posicion* posicion = columna->obtenerCursor();
@@ -79,16 +82,31 @@ void Tablero::inicializaTablero(int x, int y, int z) {
 
 						for(int k = -1; k <= 1; k++){
 
-							Posicion* posicionVecina = this->buscarPosicion(posicion->getX() + i, posicion->getY() + j, posicion->getZ() + k);
-							posicion->setVecino(posicionVecina, i, j, k);
+							Posicion* posicionVecina = this->buscarPosicion(posicion->getX() + i,
 
+							posicion->getY() + j, posicion->getZ() + k);
+
+							posicion->setVecino(posicionVecina, i, j, k);
 						}
 					}
 				}
 			}
+
 		}
 	}
+
 	this->tablero = tableroAux;
+
+}
+
+bool Tablero::posicionDisponible (int xSeleccionada, int zSeleccionada){
+
+	if (!this->buscarPosicion(xSeleccionada, 0, zSeleccionada)->estaOcupado()){
+
+		return true;
+	}
+
+	return false;
 }
 
 Posicion* Tablero::buscarPosicion (int x, int y, int z){
@@ -97,19 +115,25 @@ Posicion* Tablero::buscarPosicion (int x, int y, int z){
 
 	tablero->iniciarCursor();
 
-	while((tablero->avanzarCursor()) && posicionBuscada != NULL) {
+	while((tablero->avanzarCursor()) &&
+
+		  posicionBuscada != NULL) {
 
 		Lista<Lista<Posicion*>*>* fila = tablero->obtenerCursor();
 
 		fila->iniciarCursor();
 
-		while((fila->avanzarCursor()) && posicionBuscada != NULL) {
+		while((fila->avanzarCursor()) &&
+
+			 posicionBuscada != NULL) {
 
 			Lista<Posicion*>* columna = fila->obtenerCursor();
 
-			columna->iniciarCursor();
+			columna->obtenerCursor();
 
-			while((columna->avanzarCursor()) && posicionBuscada != NULL) {
+			while((columna->avanzarCursor()) &&
+
+				   posicionBuscada != NULL) {
 
 				Posicion* posicion = columna->obtenerCursor();
 
@@ -177,13 +201,6 @@ bool Tablero::hayGanador (Posicion* ultimaJugada, int cantidadDeFichasParaGanar)
 
 	return gano;
 }
-
-
-bool colocarFicha(char ficha, int x, int y, int z) {
-
-	
-}
-
 
 Tablero::~Tablero() {
 

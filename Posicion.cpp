@@ -80,11 +80,11 @@
 
 	bool Posicion::tieneLaMismaFicha (Posicion* posicionAComparar){
 
-		return (this->getFicha() == posicionAComparar->getFicha());
+		return (this->queFicha() == posicionAComparar->queFicha());
 
 	}
 
-	char Posicion::getFicha() {
+	char Posicion::queFicha() {
 
 		return (ficha);
 	}

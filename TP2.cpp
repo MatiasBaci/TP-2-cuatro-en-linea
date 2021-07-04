@@ -5,6 +5,8 @@
 
 #include "Posicion.h"
 
+#include "MazoDeCartas.h"
+
 #include <iostream>
 
 #include <string>
@@ -13,42 +15,52 @@ using namespace std;
 
 TP2::TP2() {
 
-	this->alto_y = 10;
+	this->largo_Y = 10;
 
 	this->ancho_X = 10;
 
 	this->profundidad_Z = 10;
 
-	this->cantidadDeFichas = 50;
+	this->cantidadDeFichasIniciales = 50;
 
 	this->cantidadFichasEnLinea = 4;
 
     this->cantidadDeJugadores = 2;
 
+    this->jugarOrdenInverso = false;
+
     this->players = NULL;
 
-	this->tablero = NULL;
-
-    this->tablero = new Tablero();
+    this->tableroDeJuego = new Tablero();
 }
 
+void TP2::cambiarOrdenDeJuego (){
 
+	if(!this->jugarOrdenInverso){
 
-void TP2::setAltura () {
+		this->jugarOrdenInverso = true;
 
-	int h;
+	} else {
+
+		this->jugarOrdenInverso = false;
+	}
+}
+
+void TP2::setLargo () {
+
+	int l;
 
 	do {
 
-		std::cout << "Ingrese el largo del tablero (entre 5 y 10): ";
+		std::cout << "Ingrese el largo del tableroDeJuego (entre 5 y 10): ";
 
-		std::cin >> h;
+		std::cin >> l;
 
 		std::cout << std::endl;
 
-	} while ((h < 5) || (h > 10));
+	} while ((l < 5) || (l > 10));
 
-	this->alto_y = h;
+	this->largo_Y = l;
 }
 
 void TP2::setAncho () {
@@ -57,7 +69,7 @@ void TP2::setAncho () {
 
 	do {
 
-		std::cout << "Ingrese el ancho del tablero (entre 5 y 10): ";
+		std::cout << "Ingrese el ancho del tableroDeJuego (entre 5 y 10): ";
 
 		std::cin >> a;
 
@@ -74,7 +86,7 @@ void TP2::setProfundidad () {
 
 	do {
 
-		std::cout << "Ingrese la profundidad del tablero (entre 5 y 10): ";
+		std::cout << "Ingrese la profundidad del tableroDeJuego (entre 5 y 10): ";
 
 		std::cin >> p;
 
@@ -86,7 +98,7 @@ void TP2::setProfundidad () {
 
 }
 
-void TP2::setCantidadDeFichas () {
+void TP2::setCantidadDeFichasIniciales() {
 
 int cantFichas;
 
@@ -100,7 +112,7 @@ do {
 
 } while (cantFichas < 10 || cantFichas > 100);
 
-this->cantidadDeFichas = cantFichas;
+this->cantidadDeFichasIniciales = cantFichas;
 
 }
 
@@ -142,37 +154,15 @@ this->cantidadDeJugadores = cantJugadores;
 }
 
 
-/*void TP2::inicializarMatriz() {
-
-	this->tablero = new Posicion **[largo_Y];
-
-	for (int i = 0; i < largo_Y; i++) {
-
-		this->tablero [i] = new Posicion *[ancho_X];
-
-		for (int j = 0; j < ancho_X; j++) {
-
-			this->tablero [i][j] = new Posicion [profundidad_Z];
-
-		}
-	}
-
-	char r = tablero [1][1][3].queFicha();
-
-	cout << r << endl;
-
-
-}*/
-
 Tablero* TP2::getTablero() {
 
-	return (this->tablero);
+	return (this->tableroDeJuego);
 
 }
 
-int TP2::getAltura () {
+int TP2::getLargo () {
 
-	return (this->alto_y);
+	return (this->largo_Y);
 
 }
 
@@ -206,11 +196,92 @@ Jugadores* TP2::getJugadores() {
 
 }
 
-void TP2::setJugadores(Jugadores *play) {
+void TP2::setJugadores() {
 
-	this->players = play;
+	Jugadores* jugadores = new Jugadores();
+
+	for (int i = 0; i < this->getCantidadDeJugadores(); i++) {
+
+		jugadores->altaDeUnJugador(this->getCantidadDeFichasIniciales());
+	}
+
+	this->players = jugadores;
+}
+
+int TP2::getCantidadDeFichasIniciales (){
+
+	return this->cantidadDeFichasIniciales;
+}
+
+Posicion* TP2::jugar(){
+
+	return (this->ubicarFicha(this->getTablero(), this->players->getListaDeJugadores(),
+
+	this->solicitarJugada(this->players->getListaDeJugadores(), this->tableroDeJuego)));
+}
+
+Posicion* TP2::ubicarFicha (Tablero* tablero, Jugador* jugadorDeTurno, Posicion* posicionSeleccionada){
+
+	int y = 0;
+
+	while(!tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ())->estaOcupado()){
+
+		y++;
+	}
+
+	tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ())
+
+			->ocupar(posicionSeleccionada->queFicha());
+
+	return tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ());
 
 }
+
+Posicion* TP2::solicitarJugada (Jugador* jugadorDeTurno, Tablero* tablero) {
+
+	int xSeleccionada, zSeleccionada;
+
+	bool hayLugar;
+
+	std::cout << std::endl << "Jugador " << jugadorDeTurno->getNombre() << "  -  Coordenada X : " << std::endl;
+
+	std::cin >> xSeleccionada;
+
+	std::cout << std::endl << " Coordenada Z : " << std::endl;
+
+	std::cin >> zSeleccionada;
+
+	hayLugar = tablero->posicionDisponible (xSeleccionada, zSeleccionada);
+
+	while ( !hayLugar ) {
+
+		std::cout << "Posicion no disponible, seleccione otra : ";
+
+		std::cin >> xSeleccionada;
+
+		std::cout << std::endl << " Coordenada Z : " << std::endl;
+
+		std::cin >> zSeleccionada;
+
+		hayLugar = tablero->posicionDisponible (xSeleccionada, zSeleccionada);
+
+	}
+
+	return (tablero->buscarPosicion(xSeleccionada, 0, zSeleccionada));
+}
+
+MazoDeCartas* TP2::crearMazoDeCartas(){
+
+	MazoDeCartas* mazo = new MazoDeCartas();
+
+	for (int i = 0; i < 100; i++) {
+
+		mazo->agregarUnaCarta();
+	}
+
+	return mazo;
+}
+
 
 
 
