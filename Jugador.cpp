@@ -127,6 +127,30 @@ void Jugador::altaDeUnaCarta (MazoDeCartas* mazo) {
 
 }
 
+void Jugador::bajaDeUnaCarta(int numeroCarta){
+	Carta * aux = misCartas;
+	Carta * aux2 = misCartas->getSig();
+	int iterador = 1;
+
+	while(aux && aux2 && iterador < numeroCarta - 1){
+		aux = aux2;
+		aux2 = aux2->getSig();
+		iterador++;
+	}
+
+	if(aux2->getSig()){
+		aux->setSig(aux2->getSig());
+		delete aux2;
+	}
+
+	else{
+
+		delete aux2;
+	}
+	
+	this->cantidadDeCartas--;
+}
+
 
 void Jugador::emite() const {
 
@@ -145,7 +169,7 @@ void Jugador::emite() const {
 
 			break;
 
-			case 3 : std::cout << "- (3) Saco fichas 5 fichas a los demas jugadores" << std::endl;
+			case 3 : std::cout << "- (3) Saco 5 fichas a los demas jugadores" << std::endl;
 
 			break;
 

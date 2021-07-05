@@ -78,6 +78,11 @@ class Jugador {
 		void altaDeUnaCarta (MazoDeCartas*);
 
 		/*
+		 * pre: Existe un jugador
+		 * post: Elimina una carta al jugador
+		 */ 
+		void bajaDeUnaCarta (int);
+		/*
 		 * pre: Existe el jugador
 		 * pos: Emite todas las cartas del jugador
 		 */
@@ -124,8 +129,6 @@ class Jugador {
 		 * pos: Actualiza juegos ganados por el jugador.
 		 */
 		void setJuegosGanados ();
-
-
 };
 
 
