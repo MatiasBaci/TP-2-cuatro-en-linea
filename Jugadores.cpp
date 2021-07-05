@@ -156,7 +156,7 @@ void Jugadores::eliminarFichaJugadores(Jugador * jugadorActual){
 	Jugador * aux = primero;
 	while(aux->getNombre() != ultimo->getNombre()){
 		if(aux->getNombre() != jugadorActual->getNombre()){
-			aux->setFichasRestantes(aux->getFichasRestantes() - 5);
+			aux->setFichasRestantes(-5);
 			aux = aux->getSig();
 		}
 	}
