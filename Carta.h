@@ -6,9 +6,9 @@
  */
 // Clase Carta
 
-#ifndef SRC_Carta_H_
+#ifndef SRC_CARTA_H_
 
-#define SRC_Carta_H_
+#define SRC_CARTA_H_
 
 #ifndef NULL
 
@@ -27,26 +27,32 @@ class Carta {
 	public:
 
 		/*
-		 * pre:
-		 * pos: Genera una Carta,que es un numero aleatorio del 1 al 4.
+		 * pre: Constructor sin argumentos nodo carta
+		 * pos: Genera una carta,que es un numero aleatorio del 1 al 4.
 		 */
 		Carta ();
 
 		/*
-		 * pre: Existe la Carta.
-		 * pos: Nos da el valor de la Carta.
+		 * pre: Constructor sin argumentos nodo carta
+		 * pos: Genera una carta,que es un numero aleatorio del 1 al 4.
+		 */
+		Carta (int valor);
+
+		/*
+		 * pre: Existe la carta.
+		 * pos: Nos da el valor de la carta.
 		 */
 		int getInfo ();
 
 		/*
 		 * pre:
-		 * pos: Avanza una Carta.
+		 * pos: Avanza una carta.
 		 */
 		Carta* getSig();
 
 		/*
 		 * pre:
-		 * pos: Hace que la Carta apunte a otra determinada.
+		 * pos: Hace que la carta apunte a otra determinada.
 		 */
 		void setSig (Carta*);
 
@@ -56,4 +62,4 @@ class Carta {
 
 
 
-#endif /* SRC_Carta_H_ */
+#endif /* SRC_CARTA_H_ */

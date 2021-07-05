@@ -73,11 +73,42 @@ void Jugadores::altaDeUnJugador(int cantFichas) {
 
 }
 
-Jugador* Jugadores::avanzaUnJugador() {
+Jugador* Jugadores::avanzaUnJugador(bool ordenDeJuegoInverso) {
 
-	this->listaDeJugadores = listaDeJugadores->getSig();
+	if (!ordenDeJuegoInverso){
 
-	return (this->listaDeJugadores);
+		this->listaDeJugadores = listaDeJugadores->getSig();
+
+		return (this->listaDeJugadores);
+
+	} else {
+
+		this->listaDeJugadores = listaDeJugadores->getAnt();
+
+		return (this->listaDeJugadores);
+	}
+}
+
+void Jugadores::sacar5Fichas(Jugador* jugadorActual){
+
+	Jugador* aux = this->primero;
+
+	do {
+
+		if (aux != jugadorActual){
+
+			aux->setFichasRestantes(-5);
+
+			aux->getSig();
+
+		}
+
+	} while (aux != this->primero);
+}
+
+int Jugadores::getCantidadDeJugadores(){
+
+	return this->cantidadDeJugadores;
 
 }
 
@@ -150,16 +181,6 @@ void Jugadores::emiteUP () const {
 
 	}
 
-}
-
-void Jugadores::eliminarFichaJugadores(Jugador * jugadorActual){
-	Jugador * aux = primero;
-	while(aux->getNombre() != ultimo->getNombre()){
-		if(aux->getNombre() != jugadorActual->getNombre()){
-			aux->setFichasRestantes(-5);
-			aux = aux->getSig();
-		}
-	}
 }
 
 /*

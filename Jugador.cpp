@@ -85,6 +85,10 @@ void Jugador::setFichasRestantes (int variacion) {
 
 	this->fichasRestantes += variacion;
 
+	if (this->fichasRestantes < 0){
+
+		this->fichasRestantes = 0;
+	}
 }
 
 Jugador* Jugador::getSig() {
@@ -122,33 +126,45 @@ void Jugador::altaDeUnaCarta (MazoDeCartas* mazo) {
 		}
 
 		this->cantidadDeCartas++;
-
 	}
-
 }
 
-void Jugador::bajaDeUnaCarta(int numeroCarta){
-	Carta * aux = misCartas;
-	Carta * aux2 = misCartas->getSig();
-	int iterador = 1;
+void Jugador::bajaDeUnaCarta(int x){
 
-	while(aux && aux2 && iterador < numeroCarta - 1){
-		aux = aux2;
-		aux2 = aux2->getSig();
-		iterador++;
+	if (misCartas){
+
+		if((misCartas->getInfo() != x) && (misCartas->getSig())){
+
+			Carta* aux1 = misCartas;
+
+			Carta* aux2 = misCartas->getSig();
+
+			while ((aux2->getInfo() != x) && (aux2->getSig() != NULL)){
+
+				aux1 = aux2;
+
+				aux2 = aux2->getSig();
+			}
+
+			if (aux2->getInfo()==x){
+
+				aux1->setSig(aux2->getSig());
+
+				delete aux2;
+			}
+
+		} else {
+
+			if(misCartas->getInfo()==x){
+
+				Carta *aux = misCartas;
+
+				misCartas = misCartas->getSig();
+
+				delete aux;
+			}
+		}
 	}
-
-	if(aux2->getSig()){
-		aux->setSig(aux2->getSig());
-		delete aux2;
-	}
-
-	else{
-
-		delete aux2;
-	}
-	
-	this->cantidadDeCartas--;
 }
 
 
@@ -169,7 +185,7 @@ void Jugador::emite() const {
 
 			break;
 
-			case 3 : std::cout << "- (3) Saco 5 fichas a los demas jugadores" << std::endl;
+			case 3 : std::cout << "- (3) Saco fichas 5 fichas a los demas jugadores" << std::endl;
 
 			break;
 

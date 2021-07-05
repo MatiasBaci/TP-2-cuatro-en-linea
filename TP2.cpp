@@ -46,6 +46,11 @@ void TP2::cambiarOrdenDeJuego (){
 	}
 }
 
+bool TP2::getOrdenDeJuego (){
+
+	return this->jugarOrdenInverso;
+}
+
 void TP2::setLargo () {
 
 	int l;

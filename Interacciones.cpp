@@ -67,3 +67,16 @@ void opcionesDeJuego (TP2* n) {
 	}
 }
 
+int queCartaVaAJugar (Jugador* jugadorDeTurno){
+
+	int cartaSeleccionada;
+
+	jugadorDeTurno->emite();
+
+	std::cout << "Ingrese el numero de carta que desea jugar, si no desea jugar ninguna ingrese 7 : " << std::endl;
+
+	std::cin >> cartaSeleccionada;
+
+	return cartaSeleccionada;
+
+}

@@ -41,6 +41,12 @@ class Jugadores {
 		Jugador* getJugadorN (int n);
 
 		/*
+		 * pre: Existe por lo menos un jugador
+		 * post: Devuelve la cantidad de jugadores
+		 */
+		int getCantidadDeJugadores();
+
+		/*
 		 * pre : Existe la lista (puntero).
 		 * pos: Da de alta un jugador al final de la lista.
 		 */
@@ -50,8 +56,13 @@ class Jugadores {
 		 * pre : Existe la lista (puntero).
 		 * pos: Avanza un jugador en la lista..
 		 */
-		Jugador* avanzaUnJugador ();
+		Jugador* avanzaUnJugador (bool);
 
+		/*
+		 * pre: Existe la lista de jugadores
+		 * post: Le saca cinco fichas a todos los jugadores, menos al que se da como parametro
+		 */
+		void sacar5Fichas(Jugador*);
 
 		/*
 		 * pre: Existe la lista
@@ -65,12 +76,6 @@ class Jugadores {
 		 */
 
 		void emiteUP () const;
-
-		/*
-		 *	pre: Existe al menos un jugador distinto al dado por parametro.
-		 *	post: Elimina 5 (cinco) fichas a cada jugador exceptuando el dado por parametro.
-		 */
-		void eliminarFichaJugadores(Jugador * jugadorActual);
 
 		/*
 		 * pre: Existe la lista

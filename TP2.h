@@ -100,6 +100,12 @@ class TP2 {
 		void cambiarOrdenDeJuego ();
 
 		/*
+		 * pre: No tiene
+		 * post: Devuelve el orden de juego, directo o inverso
+		 */
+		bool getOrdenDeJuego ();
+
+		/*
 		 * pre:
 		 * pos: Devuelve el largo del tableroDeJuego
 		 */

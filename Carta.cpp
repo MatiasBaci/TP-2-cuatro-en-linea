@@ -10,7 +10,15 @@
 
 Carta::Carta () {
 
-	this->info = rand() % 5 + 1;
+	this->info = rand() % 4 + 1;
+
+	this->sig = NULL;
+
+}
+
+Carta::Carta(int valor) {
+
+	this->info = valor;
 
 	this->sig = NULL;
 
@@ -18,17 +26,17 @@ Carta::Carta () {
 
 int  Carta::getInfo() {
 
-	return info;
+	return this->info;
 
 }
 
 Carta* Carta::getSig() {
 
-	return sig;
+	return this->sig;
 
 }
 
-void Carta::setSig(Carta* n) {
+void Carta::setSig (Carta* n) {
 
 	this->sig = n;
 

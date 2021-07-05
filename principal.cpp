@@ -38,6 +38,8 @@ int main () {
 
 	MazoDeCartas* mazo = codeando21->crearMazoDeCartas();
 
+	char deseaSeguirJugando = 's';
+
 	cout << "LLega hasta aca 1" << endl;
 
 	codeando21->getTablero()->inicializaTablero(codeando21->getLargo(), codeando21->getAncho(), codeando21->getProfundidad());
@@ -50,17 +52,78 @@ int main () {
 
 	Posicion* posicionJugada;
 
-	posicionJugada = codeando21->jugar();
+	int cartaJugada;
 
-	while(!codeando21->getTablero()->hayGanador(posicionJugada, codeando21->getCantidadFichasEnLinea()))
+	int cantidadDeJugadoresSalteados = 0;
 
-		codeando21->getJugadores()->getListaDeJugadores()->altaDeUnaCarta(mazo);
+	while (deseaSeguirJugando == 's'){
 
-		codeando21->getJugadores()->avanzaUnJugador();
+		do{
 
-		posicionJugada = codeando21->jugar();
+			posicionJugada = codeando21->jugar();
 
-	};
+			codeando21->getJugadores()->getListaDeJugadores()->altaDeUnaCarta(mazo);
+
+			cartaJugada = queCartaVaAJugar(codeando21->getJugadores()->getListaDeJugadores());
+
+			codeando21->getJugadores()->getListaDeJugadores()->bajaDeUnaCarta(cartaJugada);
+
+			switch (cartaJugada){
+
+			case 1: codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+
+			codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+
+			break;
+
+			case 2:
+
+			break;
+
+			case 3: codeando21->getJugadores()->sacar5Fichas(codeando21->getJugadores()->getListaDeJugadores());
+
+			codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+
+			break;
+
+			case 4: codeando21->cambiarOrdenDeJuego();
+
+			codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+			break;
+
+			case 7: codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+
+			break;
+
+			}
+
+			if (codeando21->getJugadores()->getListaDeJugadores()->getFichasRestantes() == 0){
+
+				codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+
+				cantidadDeJugadoresSalteados++;
+			}
+
+		} 	while((!codeando21->getTablero()->hayGanador(posicionJugada, codeando21->getCantidadFichasEnLinea())) &&
+
+				(cantidadDeJugadoresSalteados < codeando21->getJugadores()->getCantidadDeJugadores()));
+
+		if (cantidadDeJugadoresSalteados < codeando21->getJugadores()->getCantidadDeJugadores()){
+
+			cout << "No hay ganador, todos los jugadores se quedaron sin fichas" << endl;
+
+		} else {
+
+			cout << "Gano " << codeando21->getJugadores()->getListaDeJugadores()->getNombre() << endl;
+
+			codeando21->getJugadores()->getListaDeJugadores()->setJuegosGanados();
+		}
+
+		cout << "Desea seguir jugando s/n : " << endl;
+
+		cin >> deseaSeguirJugando;
+
+	}
 
 
 /*	for (int i = 0; i < codeando21.getCantidadDeJugadores(); i++) {
