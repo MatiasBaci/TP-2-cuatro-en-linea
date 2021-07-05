@@ -67,6 +67,12 @@ class Jugadores {
 		void emiteUP () const;
 
 		/*
+		 *	pre: Existe al menos un jugador distinto al dado por parametro.
+		 *	post: Elimina 5 (cinco) fichas a cada jugador exceptuando el dado por parametro.
+		 */
+		void eliminarFichaJugadores(Jugador * jugadorActual);
+
+		/*
 		 * pre: Existe la lista
 		 * pos: Destruye la lista
 		 */

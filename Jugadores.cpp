@@ -152,6 +152,16 @@ void Jugadores::emiteUP () const {
 
 }
 
+void Jugadores::eliminarFichaJugadores(Jugador * jugadorActual){
+	Jugador * aux = primero;
+	while(aux->getNombre() != ultimo->getNombre()){
+		if(aux->getNombre() != jugadorActual->getNombre()){
+			aux->setFichasRestantes(aux->getFichasRestantes() - 5);
+			aux = aux->getSig();
+		}
+	}
+}
+
 /*
 * pre: Existe la lista
 * pos: Destruye la lista
