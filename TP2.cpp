@@ -220,23 +220,30 @@ int TP2::getCantidadDeFichasIniciales (){
 
 Posicion* TP2::jugar(){
 
-	return (this->ubicarFicha(this->getTablero(), this->players->getListaDeJugadores(),
-
-	this->solicitarJugada(this->players->getListaDeJugadores(), this->tableroDeJuego)));
+	return (this->ubicarFicha(this->getTablero(), this->players->getListaDeJugadores(), this->solicitarJugada(this->players->getListaDeJugadores(), this->getTablero())));
 }
 
 Posicion* TP2::ubicarFicha (Tablero* tablero, Jugador* jugadorDeTurno, Posicion* posicionSeleccionada){
 
 	int y = 0;
 
-	while(!tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ())->estaOcupado()){
+	while(!tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ())->estaOcupado() && y < 9){
 
 		y++;
 	}
 
-	tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ())
+	if(!tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ())->estaOcupado()){
+		tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ())
 
 			->ocupar(posicionSeleccionada->queFicha());
+			return tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ());
+
+	} else {
+
+			tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ())
+
+			->ocupar(posicionSeleccionada->queFicha());
+	}
 
 	return tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ());
 
