@@ -10,21 +10,21 @@
 
 	Posicion::Posicion() {
 
-		ocupado = false;
+		this->ocupado = false;
 
-		ficha = ' ';
+		this->ficha = ' ';
 
-		x = 0;
+		this->x = 0;
 
-		y = 0;
+		this->y = 0;
 
-		z = 0;
+		this->z = 0;
 	}
 
 
 	bool Posicion::estaOcupado () {
 
-		return (ocupado);
+		return (this->ocupado);
 
 	}
 
@@ -62,7 +62,7 @@
 
 		// validar
 
-		return vecinos[x + 1][y + 1][z + 1];
+		return this->vecinos[x + 1][y + 1][z + 1];
 
 	}
 
@@ -86,17 +86,17 @@
 
 	char Posicion::queFicha() {
 
-		return (ficha);
+		return (this->ficha);
 	}
 
 
 	void Posicion::ocupar (char tipoFicha) {
 
-		if (!ocupado) {
+		if (!this->ocupado) {
 
-			ficha = tipoFicha;
+			this->ficha = tipoFicha;
 
-			ocupado = true;
+			this->ocupado = true;
 
 		}
 	}

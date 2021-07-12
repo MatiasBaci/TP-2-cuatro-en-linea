@@ -38,7 +38,7 @@ class Tablero {
 		 * pre: Recibe una posicion valida en el tablero
 		 * post: Devuelve un puntero a esa posicion
 		 */
-		Posicion* buscarPosicion (int x, int y, int z);
+		Posicion* buscarPosicion (int x, int y, int z,Lista<Lista<Lista<Posicion*>*>*>* );
 
 		/*
 		 * pre: Recibe la ultima jugada, la cantidad necesaria de fichas en linea para ganar
@@ -51,6 +51,12 @@ class Tablero {
 		 * post: Devuleve un bool que indica si hay lugar en esa columna
 		 */
 		bool posicionDisponible (int, int);
+
+		/*
+		 * pre: Existe el tablero
+		 * post: Devuelve un puntero al tablero
+		 */
+		Lista<Lista<Lista<Posicion*>*>*>* getTablero();
 
 		/*
 		 * pre : Existe el tablero

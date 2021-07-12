@@ -70,30 +70,30 @@ int main () {
 
 			switch (cartaJugada){
 
-			case 1: codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+				case 1: codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
 
-			codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+						codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
 
-			break;
+				break;
 
-			case 2:
+				case 2:
 
-			break;
+				break;
 
-			case 3: codeando21->getJugadores()->sacar5Fichas(codeando21->getJugadores()->getListaDeJugadores());
+				case 3: codeando21->getJugadores()->sacar5Fichas(codeando21->getJugadores()->getListaDeJugadores());
 
-			codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+						codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
 
-			break;
+				break;
 
-			case 4: codeando21->cambiarOrdenDeJuego();
+				case 4: codeando21->cambiarOrdenDeJuego();
 
-			codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
-			break;
+						codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+				break;
 
-			case 7: codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
+				case 7: codeando21->getJugadores()->avanzaUnJugador(codeando21->getOrdenDeJuego());
 
-			break;
+				break;
 
 			}
 

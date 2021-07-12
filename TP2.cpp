@@ -220,32 +220,29 @@ int TP2::getCantidadDeFichasIniciales (){
 
 Posicion* TP2::jugar(){
 
-	return (this->ubicarFicha(this->getTablero(), this->players->getListaDeJugadores(), this->solicitarJugada(this->players->getListaDeJugadores(), this->getTablero())));
+	return (this->ubicarFicha(this->getTablero(), this->players->getListaDeJugadores(),
+
+	this->solicitarJugada(this->players->getListaDeJugadores(), this->tableroDeJuego)));
 }
 
 Posicion* TP2::ubicarFicha (Tablero* tablero, Jugador* jugadorDeTurno, Posicion* posicionSeleccionada){
 
 	int y = 0;
 
-	while(!tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ())->estaOcupado() && y < 9){
+	cout << "LLega a 56" << endl;
+
+	while(!tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ(), tablero->getTablero())->estaOcupado() &&
+
+		  (y < (this->getLargo() - 1))){
 
 		y++;
 	}
 
-	if(!tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ())->estaOcupado()){
-		tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ())
+	tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ(), tablero->getTablero())
 
 			->ocupar(posicionSeleccionada->queFicha());
-			return tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ());
 
-	} else {
-
-			tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ())
-
-			->ocupar(posicionSeleccionada->queFicha());
-	}
-
-	return tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ());
+	return tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ(), tablero->getTablero());
 
 }
 
@@ -263,7 +260,11 @@ Posicion* TP2::solicitarJugada (Jugador* jugadorDeTurno, Tablero* tablero) {
 
 	std::cin >> zSeleccionada;
 
+	cout << "Llega a 54"<< endl;
+
 	hayLugar = tablero->posicionDisponible (xSeleccionada, zSeleccionada);
+
+	cout << "Llega a 53" << endl;
 
 	while ( !hayLugar ) {
 
@@ -279,7 +280,7 @@ Posicion* TP2::solicitarJugada (Jugador* jugadorDeTurno, Tablero* tablero) {
 
 	}
 
-	return (tablero->buscarPosicion(xSeleccionada, 0, zSeleccionada));
+	return (tablero->buscarPosicion(xSeleccionada, 0, zSeleccionada, tablero->getTablero()));
 }
 
 MazoDeCartas* TP2::crearMazoDeCartas(){
