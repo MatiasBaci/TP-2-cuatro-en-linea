@@ -58,6 +58,7 @@ class Tablero {
 		 */
 		Lista<Lista<Lista<Posicion*>*>*>* getTablero();
 
+		void inicializarVecinos();
 		/*
 		 * pre : Existe el tablero
 		 * pos: Destruye el tablero

@@ -26,10 +26,6 @@ Tablero::Tablero() {
 
 void Tablero::inicializaTablero(int x, int y, int z) {
 
-	Lista<Lista<Lista<Posicion*>*>*>* tableroAux = NULL;
-
-	tableroAux = new Lista<Lista<Lista<Posicion*>*>*>();
-
 	for (int i = 0; i < x; i++) {
 
 		Lista<Lista<Posicion*>*>* nivel2 = new Lista<Lista<Posicion*>*>();
@@ -54,80 +50,62 @@ void Tablero::inicializaTablero(int x, int y, int z) {
 			nivel2->agregar(nivel3);
 		}
 
-		tableroAux->agregar(nivel2);
+		this->tablero->agregar(nivel2);
 
 	}
+	this->inicializarVecinos();
+}
 
-	this->tablero = tableroAux;
-
+void Tablero::inicializarVecinos(){
 	this->tablero->iniciarCursor();
-
+	int tableroActual = 0, filaActual = 0, columnaActual = 0;
 	while(this->tablero->avanzarCursor()) {
-
+		tableroActual++;
 		Lista<Lista<Posicion*>*>* fila = this->tablero->obtenerCursor();
 
 		fila->iniciarCursor();
 
 		while(fila->avanzarCursor()){
-
+			filaActual++;
 			Lista<Posicion*>* columna = fila->obtenerCursor();
 
 			columna->iniciarCursor();
 
 			while(columna->avanzarCursor()) {
-
-				//Lista<Posicion*>* columnaAux = columna;
-
-				do{
-
+				columnaActual++;
 				Posicion* posicion = columna->obtenerCursor();
-
+				cout << posicion << endl;
 				cout << " Voy a buscar " << posicion->getX() << posicion->getY() << posicion->getZ() << endl;
-
-				int parar;
-
-				cin >> parar;
 
 				for(int i = -1; i <= 1; i++){
 
 					for(int j = -1; j <= 1; j++){
 
 						for(int k = -1; k <= 1; k++){
-
-							cout << "Antes de Avanzar cursor 1 "<< columna->obtenerCursor()->getZ() << endl;
-
-							Posicion* posicionVecina = this->buscarPosicion(posicion->getX() + i,
-
-							posicion->getY() + j, posicion->getZ() + k, this->tablero);
+							
+							Posicion* posicionVecina = this->buscarPosicion(posicion->getX() + i, posicion->getY() + j, posicion->getZ() + k, this->tablero);
 
 							posicion->setVecino(posicionVecina, i, j, k);
 
-							cout << "Antes de Avanzar cursor 2 "<< columna->obtenerCursor()->getZ() << endl;
-
+							tablero->setCursor(tableroActual);
+							fila->setCursor(filaActual);
+							columna->setCursor(columnaActual);
 						}
 					}
 				}
-
-
-
-				//cout << "Antes de Avanzar cursor "<< columna->obtenerCursor()->getX() << posicion->getY() << posicion->getZ() << endl;
-
-				//columna = columnaAux;
-
-				} while (columna->avanzarCursor() && columna->avanzarCursor() && columna->avanzarCursor());
-
 			}
-
+			columnaActual = 0;
 		}
+		filaActual = 0;
 	}
+	tableroActual = 0;
 }
 
-Posicion* Tablero::buscarPosicion (int x, int y, int z, Lista<Lista<Lista<Posicion*>*>*>* tableroAux){
-
+Posicion* Tablero::buscarPosicion (int x, int y, int z, Lista<Lista<Lista<Posicion*>*>*>* tableroAux) {
 
 	int contadorDeCasilleros = 0;
 
-	cout << " Esta buscando " << x << y << z << endl;
+	//cout << " Esta buscando " << x << y << z << endl;
 
 	Posicion* posicionBuscada = NULL;
 
@@ -139,7 +117,7 @@ Posicion* Tablero::buscarPosicion (int x, int y, int z, Lista<Lista<Lista<Posici
 
 				posicionBuscada == NULL) {
 
-			cout << "LLega a 61 " << endl;
+			//cout << "LLega a 61 " << endl;
 
 			Lista<Lista<Posicion*>*>* fila = tableroAux->obtenerCursor();
 
@@ -157,17 +135,17 @@ Posicion* Tablero::buscarPosicion (int x, int y, int z, Lista<Lista<Lista<Posici
 
 						posicionBuscada == NULL) {
 
-					cout << "LLega a 62 " << endl;
+					//cout << "LLega a 62 " << endl;
 
 					Posicion* posicion = columna->obtenerCursor();
 
-					cout << "LLega a 67 " << posicion->getX() << endl;
+					/*cout << "LLega a 67 " << posicion->getX() << endl;
 
 					cout << "LLega a 67 " << posicion->getY() << endl;
 
 					cout << "LLega a 67 " << posicion->getZ() << endl;
 
-					cout << " Esta buscando x =  " << x << " y = "<< y << " z = " << z << endl;
+					cout << " Esta buscando x =  " << x << " y = "<< y << " z = " << z << endl;*/
 
 					if((x == posicion->getX()) &&
 
@@ -175,7 +153,7 @@ Posicion* Tablero::buscarPosicion (int x, int y, int z, Lista<Lista<Lista<Posici
 
 							(z == posicion->getZ())) {
 
-						cout << "LLega a 63 " << endl;
+						//cout << "LLega a 63 " << endl;
 
 						posicionBuscada = posicion;
 					}
@@ -183,16 +161,15 @@ Posicion* Tablero::buscarPosicion (int x, int y, int z, Lista<Lista<Lista<Posici
 			}
 		}
 
-		cout << "LLega a 69 " << endl;
+		//cout << "LLega a 69 " << endl;
 
-		cout << posicionBuscada->getX() << "esaa" << endl;
+		//cout << posicionBuscada->getX() << "esaa" << endl;
 
-		contadorDeCasilleros++;
+		//contadorDeCasilleros++;
 
-		cout << contadorDeCasilleros << endl;
-
+		//cout << contadorDeCasilleros << endl;
 	}
-
+	
 	return posicionBuscada;
 }
 

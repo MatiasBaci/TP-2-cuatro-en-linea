@@ -115,7 +115,7 @@ template<class T> class Lista {
          *
          */
         T obtenerCursor();
-
+        void setCursor(unsigned int);
         /*
          * post: libera los recursos asociados a la Lista.
          */
@@ -318,6 +318,11 @@ template<class T> T Lista<T>::obtenerCursor() {
     }
 
     return elemento;
+}
+
+template<class T> void Lista<T>::setCursor( unsigned int posicion){
+    Nodo<T> * nuevoCursor = obtenerNodo(posicion);
+    this->cursor = nuevoCursor;
 }
 
 template<class T> Lista<T>::~Lista() {
