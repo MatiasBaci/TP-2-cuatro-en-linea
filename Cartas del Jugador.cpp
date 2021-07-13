@@ -116,6 +116,8 @@ void cartasDelJugador::emite() const {
 
 	Carta *aux = cartaDelJugador;
 
+	std::cout << "Tus cartas:" << std::endl;
+
 	while (aux) {
 
 		switch(aux->getInfo()) {
