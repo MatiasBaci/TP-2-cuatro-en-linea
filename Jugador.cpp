@@ -172,6 +172,12 @@ void Jugador::emite() const {
 
 	Carta *aux = misCartas;
 
+	if (aux) {
+		std::cout << "Cartas en tu mano:" << std::endl;
+	} else {
+		std::cout << "No tenes cartas:" << std::endl;
+	}
+
 	while (aux) {
 
 

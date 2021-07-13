@@ -116,7 +116,11 @@ void cartasDelJugador::emite() const {
 
 	Carta *aux = cartaDelJugador;
 
-	std::cout << "Tus cartas:" << std::endl;
+	if (aux) {
+		std::cout << "Cartas en tu mano:" << std::endl;
+	} else {
+		std::cout << "No tenes cartas:" << std::endl;
+	}
 
 	while (aux) {
 
