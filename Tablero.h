@@ -35,6 +35,12 @@ class Tablero {
 		void inicializaTablero (int x, int y, int z);
 
 		/*
+		 * pre: Existe el puntero al tablero, inicializadas sus posiciones.
+		 * post: Genera los vecinos de las posiciones del tablero.
+		 */
+		void inicializarVecinos();
+
+		/*
 		 * pre: Recibe una posicion valida en el tablero
 		 * post: Devuelve un puntero a esa posicion
 		 */
@@ -58,7 +64,6 @@ class Tablero {
 		 */
 		Lista<Lista<Lista<Posicion*>*>*>* getTablero();
 
-		void inicializarVecinos();
 		/*
 		 * pre : Existe el tablero
 		 * pos: Destruye el tablero

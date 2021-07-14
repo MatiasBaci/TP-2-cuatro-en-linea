@@ -57,6 +57,7 @@ void Tablero::inicializaTablero(int x, int y, int z) {
 }
 
 void Tablero::inicializarVecinos(){
+
 	this->tablero->iniciarCursor();
 	int tableroActual = 0, filaActual = 0, columnaActual = 0;
 	while(this->tablero->avanzarCursor()) {
@@ -74,8 +75,6 @@ void Tablero::inicializarVecinos(){
 			while(columna->avanzarCursor()) {
 				columnaActual++;
 				Posicion* posicion = columna->obtenerCursor();
-				cout << posicion << endl;
-				cout << " Voy a buscar " << posicion->getX() << posicion->getY() << posicion->getZ() << endl;
 
 				for(int i = -1; i <= 1; i++){
 
@@ -84,7 +83,6 @@ void Tablero::inicializarVecinos(){
 						for(int k = -1; k <= 1; k++){
 							
 							Posicion* posicionVecina = this->buscarPosicion(posicion->getX() + i, posicion->getY() + j, posicion->getZ() + k, this->tablero);
-
 							posicion->setVecino(posicionVecina, i, j, k);
 
 							tablero->setCursor(tableroActual);
@@ -103,74 +101,36 @@ void Tablero::inicializarVecinos(){
 
 Posicion* Tablero::buscarPosicion (int x, int y, int z, Lista<Lista<Lista<Posicion*>*>*>* tableroAux) {
 
-	int contadorDeCasilleros = 0;
-
-	//cout << " Esta buscando " << x << y << z << endl;
-
 	Posicion* posicionBuscada = NULL;
 
-	if ((0 <= x) && ( 0 <= y ) && (0 <= z)){
+	if ((x >= 0) && ( y >= 0 ) && (z >= 0)){
 
 		tableroAux->iniciarCursor();
 
-		while((tableroAux->avanzarCursor()) &&
-
-				posicionBuscada == NULL) {
-
-			//cout << "LLega a 61 " << endl;
-
+		while((tableroAux->avanzarCursor()) && posicionBuscada == NULL) {
+		
 			Lista<Lista<Posicion*>*>* fila = tableroAux->obtenerCursor();
 
 			fila->iniciarCursor();
 
-			while((fila->avanzarCursor()) &&
-
-					posicionBuscada == NULL) {
+			while((fila->avanzarCursor()) && posicionBuscada == NULL) {
 
 				Lista<Posicion*>* columna = fila->obtenerCursor();
-
 				columna->iniciarCursor();
 
-				while((columna->avanzarCursor()) &&
-
-						posicionBuscada == NULL) {
-
-					//cout << "LLega a 62 " << endl;
+				while((columna->avanzarCursor()) && posicionBuscada == NULL) {
 
 					Posicion* posicion = columna->obtenerCursor();
 
-					/*cout << "LLega a 67 " << posicion->getX() << endl;
-
-					cout << "LLega a 67 " << posicion->getY() << endl;
-
-					cout << "LLega a 67 " << posicion->getZ() << endl;
-
-					cout << " Esta buscando x =  " << x << " y = "<< y << " z = " << z << endl;*/
-
-					if((x == posicion->getX()) &&
-
-							(y == posicion->getY()) &&
-
-							(z == posicion->getZ())) {
-
-						//cout << "LLega a 63 " << endl;
+					if((x == posicion->getX()) && (y == posicion->getY()) && (z == posicion->getZ())) {
 
 						posicionBuscada = posicion;
 					}
 				}
 			}
 		}
-
-		//cout << "LLega a 69 " << endl;
-
-		//cout << posicionBuscada->getX() << "esaa" << endl;
-
-		//contadorDeCasilleros++;
-
-		//cout << contadorDeCasilleros << endl;
 	}
-	
-	return posicionBuscada;
+ 	return posicionBuscada;
 }
 
 bool Tablero::posicionDisponible (int xSeleccionada, int zSeleccionada){
@@ -213,8 +173,7 @@ bool Tablero::hayGanador (Posicion* ultimaJugada, int cantidadDeFichasParaGanar)
 			for(int k = -1; k <= 1; k++){
 
 				Posicion* vecino = ultimaJugada->getVecino(i, j, k);
-
-				while(vecino->tieneLaMismaFicha(ultimaJugada)){
+				while(vecino != NULL && vecino->tieneLaMismaFicha(ultimaJugada)){
 
 					cantidadEnLinea[i + 1][j + 1][k + 1]++;
 
