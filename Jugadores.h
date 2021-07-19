@@ -64,6 +64,7 @@ class Jugadores {
 		 */
 		void sacar5Fichas(Jugador*);
 
+		bool fichaRepetida(char ficha);
 		/*
 		 * pre: Existe la lista
 		 * pos: Muestra por consola los nombres de los jugadores del primero al ultimo

@@ -46,7 +46,7 @@ class Jugador {
 		* pre: No tiene
 		* pos: Crea un jugador.
 		*/
-		Jugador (std::string, unsigned int, char);
+		Jugador (std::string, unsigned int);
 
 		/*
 		 * post: Destructor
@@ -108,6 +108,11 @@ class Jugador {
 		char getFicha ();
 
 		/*
+		 *	pre: Existe jugador
+		 *	post: Crea la ficha del jugador segun caracter dado por parametro
+		 */
+		void setFicha (char);
+		/*
 		 * pre:
 		 * pos: Devuelve las fichas que le quedan al jugador
 		 */
@@ -131,7 +136,11 @@ class Jugador {
 		 */
 		void setJuegosGanados ();
 
-
+		/*
+		 * pre:
+		 * post: Devuelve la cantidad de cartas que tiene el jugador.
+		 */
+		int getCantidadCartas();
 };
 
 

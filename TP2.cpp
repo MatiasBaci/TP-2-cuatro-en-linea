@@ -220,16 +220,12 @@ int TP2::getCantidadDeFichasIniciales (){
 
 Posicion* TP2::jugar(){
 
-	return (this->ubicarFicha(this->getTablero(), this->players->getListaDeJugadores(),
-
-	this->solicitarJugada(this->players->getListaDeJugadores(), this->tableroDeJuego)));
+	return (this->ubicarFicha(this->getTablero(), this->players->getListaDeJugadores(), this->solicitarJugada(this->players->getListaDeJugadores(), this->tableroDeJuego)));
 }
 
 Posicion* TP2::ubicarFicha (Tablero* tablero, Jugador* jugadorDeTurno, Posicion* posicionSeleccionada){
 
 	int y = 0;
-
-	cout << "LLega a 56" << endl;
 
 	while(!tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ(), tablero->getTablero())->estaOcupado() &&
 
@@ -240,7 +236,9 @@ Posicion* TP2::ubicarFicha (Tablero* tablero, Jugador* jugadorDeTurno, Posicion*
 
 	tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ(), tablero->getTablero())
 
-			->ocupar(posicionSeleccionada->queFicha());
+			->ocupar(jugadorDeTurno->getFicha());
+
+	jugadorDeTurno->setFichasRestantes(-1);
 
 	return tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ(), tablero->getTablero());
 
@@ -252,19 +250,27 @@ Posicion* TP2::solicitarJugada (Jugador* jugadorDeTurno, Tablero* tablero) {
 
 	bool hayLugar;
 
-	std::cout << std::endl << "Jugador " << jugadorDeTurno->getNombre() << "  -  Coordenada X : " << std::endl;
+	std::cout << std::endl << "Jugador " << jugadorDeTurno->getNombre() << endl << "Cantidad de fichas: " << jugadorDeTurno->getFichasRestantes() << endl << "Coordenada X : " << std::endl;
 
 	std::cin >> xSeleccionada;
 
-	std::cout << std::endl << " Coordenada Z : " << std::endl;
+	while(xSeleccionada > getTablero()->getAncho() || xSeleccionada < 1){
+		
+		cout << "Posicion fuera de limites. Vuelva a seleccionar su coordenada X (1 a 10)" << endl;
+		cin >> xSeleccionada;
+	}
+
+	std::cout << std::endl << "Coordenada Z : " << std::endl;
 
 	std::cin >> zSeleccionada;
 
-	cout << "Llega a 54"<< endl;
+	while(zSeleccionada > getTablero()->getProfundidad() || zSeleccionada < 1){
+		
+		cout << "Posicion fuera de limites. Vuelva a seleccionar su coordenada Z (1 a 10)" << endl;
+		cin >> zSeleccionada;
+	}
 
 	hayLugar = tablero->posicionDisponible (xSeleccionada, zSeleccionada);
-
-	cout << "Llega a 53" << endl;
 
 	while ( !hayLugar ) {
 
@@ -294,10 +300,3 @@ MazoDeCartas* TP2::crearMazoDeCartas(){
 
 	return mazo;
 }
-
-
-
-
-
-
-

@@ -19,6 +19,9 @@ class Tablero {
 	private:
 
 		Lista<Lista<Lista<Posicion*>*>*>* tablero;
+		int largo;
+		int ancho;
+		int profundidad;
 
 	public:
 
@@ -63,6 +66,24 @@ class Tablero {
 		 * post: Devuelve un puntero al tablero
 		 */
 		Lista<Lista<Lista<Posicion*>*>*>* getTablero();
+
+		/*
+		 *	pre: Existe el tablero
+		 *  post: Devuelve el largo del tablero
+		 */ 
+		int getLargo();
+
+		/*
+		 * pre: Existe el tablero
+		 * post: Devuelve el ancho del tablero
+		 */
+		int getAncho();
+
+		/*
+		 * pre: Existe el tablero
+		 * post: Devuelve la profundidad del tablero
+		 */
+		int getProfundidad();
 
 		/*
 		 * pre : Existe el tablero

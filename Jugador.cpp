@@ -34,13 +34,11 @@ Jugador::Jugador() {
 	misCartas = NULL;
 }
 
-Jugador::Jugador(std::string name, unsigned int fichasIniciales, char fficha) {
+Jugador::Jugador(std::string name, unsigned int fichasIniciales) {
 
 	this->nombre = name;
 
 	this->fichasRestantes = fichasIniciales;
-
-	this->ficha = fficha;
 
 	this->cantidadDeCartas = 0;
 
@@ -67,6 +65,10 @@ char Jugador::getFicha() {
 
 	return this->ficha;
 
+}
+
+void Jugador::setFicha(char fficha){
+	this->ficha = fficha;
 }
 
 unsigned int Jugador::getFichasRestantes() {
@@ -131,6 +133,8 @@ void Jugador::altaDeUnaCarta (MazoDeCartas* mazo) {
 
 void Jugador::bajaDeUnaCarta(int x){
 
+	bool cartaEncontrada = false;
+
 	if (misCartas){
 
 		if((misCartas->getInfo() != x) && (misCartas->getSig())){
@@ -150,6 +154,8 @@ void Jugador::bajaDeUnaCarta(int x){
 
 				aux1->setSig(aux2->getSig());
 
+				cartaEncontrada = true;
+
 				delete aux2;
 			}
 
@@ -161,9 +167,16 @@ void Jugador::bajaDeUnaCarta(int x){
 
 				misCartas = misCartas->getSig();
 
+				cartaEncontrada = true;
+
 				delete aux;
 			}
 		}
+	}
+	if(cartaEncontrada){
+
+		this->cantidadDeCartas--;
+
 	}
 }
 
@@ -171,12 +184,6 @@ void Jugador::bajaDeUnaCarta(int x){
 void Jugador::emite() const {
 
 	Carta *aux = misCartas;
-
-	if (aux) {
-		std::cout << "Cartas en tu mano:" << std::endl;
-	} else {
-		std::cout << "No tenes cartas:" << std::endl;
-	}
 
 	while (aux) {
 
@@ -191,7 +198,7 @@ void Jugador::emite() const {
 
 			break;
 
-			case 3 : std::cout << "- (3) Saco fichas 5 fichas a los demas jugadores" << std::endl;
+			case 3 : std::cout << "- (3) Saco 5 fichas a los demas jugadores" << std::endl;
 
 			break;
 
@@ -223,4 +230,8 @@ void Jugador::setJuegosGanados () {
 
 	this->juegosGanados++;
 
+}
+
+int Jugador::getCantidadCartas(){
+	return this->cantidadDeCartas;
 }

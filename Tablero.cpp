@@ -22,9 +22,21 @@ Tablero::Tablero() {
 
 	this->tablero = new Lista<Lista<Lista<Posicion*>*>*>();
 
+	this->ancho = 0;
+
+	this->largo = 0;
+
+	this->profundidad = 0;
+
 }
 
 void Tablero::inicializaTablero(int x, int y, int z) {
+
+	this->largo = y;
+
+	this->ancho = x;
+
+	this->profundidad = z;
 
 	for (int i = 0; i < x; i++) {
 
@@ -135,13 +147,7 @@ Posicion* Tablero::buscarPosicion (int x, int y, int z, Lista<Lista<Lista<Posici
 
 bool Tablero::posicionDisponible (int xSeleccionada, int zSeleccionada){
 
-	cout << xSeleccionada << zSeleccionada << endl;
-
-	cout << this->buscarPosicion(xSeleccionada, 0, zSeleccionada, this->tablero)->getX() << endl;
-
 	if (!(this->buscarPosicion(xSeleccionada, 0, zSeleccionada, this->tablero)->estaOcupado())){
-
-		cout << "999" << endl;
 
 		return true;
 	}
@@ -239,4 +245,19 @@ Lista<Lista<Lista<Posicion*>*>*>* Tablero::getTablero(){
 
 	return this->tablero;
 
+}
+
+int Tablero::getAncho(){
+
+	return this->ancho;
+}
+
+int Tablero::getLargo(){
+
+	return this->largo;
+}
+
+int Tablero::getProfundidad(){
+
+	return this->profundidad;
 }

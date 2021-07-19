@@ -31,15 +31,29 @@ void Jugadores::altaDeUnJugador(int cantFichas) {
 
 	string nombre;
 
-	char ficha = (char)(this->cantidadDeJugadores + 64);
+	char ficha;
 
 	if (this->cantidadDeJugadores < 6) {
 
-		cout << "Ingrese el nombre del jugador :";
+		cout << "Ingrese el nombre del jugador: ";
 
 		cin >> nombre;
 
-		Jugador *nuevo = new Jugador(nombre, cantFichas, ficha);
+		Jugador *nuevo = new Jugador(nombre, cantFichas);
+
+		cout << "Ingrese una letra que sera su ficha durante todo el juego" << endl;
+
+		cin >> ficha;
+
+		while(fichaRepetida(ficha)){
+		
+			cout << "Ficha repetida. Ingrese una letra que sera su ficha durante todo el juego" << endl;
+			
+			cin >> ficha;	
+
+		}
+
+		nuevo->setFicha(ficha);
 
 		if (primero == NULL) {
 
@@ -73,6 +87,32 @@ void Jugadores::altaDeUnJugador(int cantFichas) {
 
 }
 
+bool Jugadores::fichaRepetida(char ficha){
+	
+	bool fichaEncontrada = false;
+	
+	if(this->primero != NULL){
+
+		Jugador * aux = this->primero;
+
+		do {
+
+			if(aux->getFicha() == ficha){
+
+				fichaEncontrada = true;
+
+			}
+
+			aux->getSig();
+
+		} while (aux != this->primero && !fichaEncontrada);
+
+	}
+
+	return fichaEncontrada;
+
+}
+
 Jugador* Jugadores::avanzaUnJugador(bool ordenDeJuegoInverso) {
 
 	if (!ordenDeJuegoInverso){
@@ -94,16 +134,17 @@ void Jugadores::sacar5Fichas(Jugador* jugadorActual){
 	Jugador* aux = this->primero;
 
 	do {
-
-		if (aux != jugadorActual){
+		
+		cout << jugadorActual->getNombre() << " " << aux->getNombre() << endl;
+		if (aux->getNombre() != jugadorActual->getNombre()){
 
 			aux->setFichasRestantes(-5);
 
-			aux->getSig();
-
 		}
 
-	} while (aux != this->primero);
+		aux = aux->getSig();
+
+	} while (aux != this->primero && aux != NULL);
 }
 
 int Jugadores::getCantidadDeJugadores(){
