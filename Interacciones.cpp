@@ -17,7 +17,7 @@ void presentacion () {
 
 	std::cout << std::endl << std::endl << std::endl;
 
-	std::cout << "                               ***************************** " << std::endl;
+	std::cout << "                              ***************************** " << std::endl;
 
 	std::cout << "                               JUEGO CUATRO EN LINEA V 1.0 " << std::endl;
 
@@ -79,4 +79,42 @@ int queCartaVaAJugar (Jugador* jugadorDeTurno){
 
 	return cartaSeleccionada;
 
+}
+
+void opcionesDeJugador(TP2* tp2){
+	
+	int numeroOpcion;
+	int cartaJugada;
+	bool terminado = false;
+
+	while(!terminado){
+		
+		std::cout << "Ingrese que opcion desea ingresar:" << std::endl;
+		std::cout << "1: Ver posiciones ocupadas por usted" << std::endl << "2: Ver cartas disponibles" << std::endl << "3: Avanzar turno" << std::endl;
+		std::cin >> numeroOpcion;
+
+		while(numeroOpcion < 1 || numeroOpcion > 3){
+			std::cout << "Opcion ingresada no valida. Ingrese nuevamente una de las siguientes opciones:" << std::endl;
+			std::cout << "1: Ver posiciones ocupadas por usted" << std::endl << "2: Ver cartas disponibles" << std::endl << "3: Avanzar turno" << std::endl;
+			std::cin >> numeroOpcion;
+		}
+
+		switch(numeroOpcion){
+
+		case 1:
+			tp2->getJugadores()->getListaDeJugadores()->emitirPosicionesOcupadas();
+			break;
+
+		case 2:
+			cartaJugada = queCartaVaAJugar(tp2->getJugadores()->getListaDeJugadores());
+			tp2->efectuarCarta(cartaJugada);
+			terminado = true;
+			break;
+			
+		case 3:
+			tp2->getJugadores()->avanzaUnJugador(tp2->getOrdenDeJuego());
+			terminado = true;
+			break;		
+		}
+	}
 }

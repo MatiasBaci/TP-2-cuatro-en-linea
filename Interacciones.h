@@ -30,5 +30,9 @@ void opcionesDeJuego (TP2*);
  */
 int queCartaVaAJugar (Jugador*);
 
-
+/*
+ * pre: Existe el TP2
+ * post: Muestra al jugador 3 posibles opciones al jugar su turno.
+ */
+void opcionesDeJugador(TP2*);
 #endif /* SRC_INTERACCIONES_H_ */

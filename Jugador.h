@@ -14,6 +14,12 @@
 
 #include "Cartas del Jugador.h"
 
+#include "Lista.h"
+
+#include "Nodo.h"
+
+#include "Posicion.h"
+
 class Jugador {
 
 	private:
@@ -33,6 +39,8 @@ class Jugador {
 		Jugador *sig;
 
 		Jugador *ant;
+
+		Lista <Posicion *> * posicionesOcupadas;
 
 	public:
 
@@ -141,6 +149,18 @@ class Jugador {
 		 * post: Devuelve la cantidad de cartas que tiene el jugador.
 		 */
 		int getCantidadCartas();
+
+		/*
+		 *	pre: Posicion debe estar inicializada previamente con datos validos.
+		 *  post: Agrega a la lista de posicionesOcupadas la posicion dada por argumento.
+		 */
+		void agregarPosicionOcupada(Posicion*);
+
+		/*
+		 * pre: -
+ 		 * post: Emite por consola las posiciones ocupadas por este jugador.
+		 */
+		void emitirPosicionesOcupadas();
 };
 
 

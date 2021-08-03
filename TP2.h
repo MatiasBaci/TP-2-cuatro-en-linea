@@ -177,7 +177,13 @@ class TP2 {
 		 * post: Crea el mazo de cartas
 		 */
 		MazoDeCartas* crearMazoDeCartas();
+		
+		/*
+		 * pre: El numero de carta debe ser valido.
+		 * post: Efectua la carta que se jugo ese turno.
+		 */
 
+		void efectuarCarta(int);
 };
 
 

@@ -300,3 +300,38 @@ MazoDeCartas* TP2::crearMazoDeCartas(){
 
 	return mazo;
 }
+
+void TP2::efectuarCarta(int carta){
+
+	this->getJugadores()->getListaDeJugadores()->bajaDeUnaCarta(carta);
+
+	switch (carta){
+
+		case 1: this->getJugadores()->avanzaUnJugador(this->getOrdenDeJuego());
+
+			this->getJugadores()->avanzaUnJugador(this->getOrdenDeJuego());
+
+			break;
+
+		case 2:
+
+			break;
+
+		case 3: this->getJugadores()->sacar5Fichas(this->getJugadores()->getListaDeJugadores());
+
+			this->getJugadores()->avanzaUnJugador(this->getOrdenDeJuego());
+
+			break;
+
+		case 4: this->cambiarOrdenDeJuego();
+
+			this->getJugadores()->avanzaUnJugador(this->getOrdenDeJuego());
+			    	        
+            break;
+
+		case 7: this->getJugadores()->avanzaUnJugador(this->getOrdenDeJuego());
+
+			break;
+
+	}
+}

@@ -32,6 +32,10 @@ Jugador::Jugador() {
 	this->ant = NULL;
 
 	misCartas = NULL;
+
+	this->posicionesOcupadas = NULL;
+
+	this->posicionesOcupadas = new Lista<Posicion*>();
 }
 
 Jugador::Jugador(std::string name, unsigned int fichasIniciales) {
@@ -49,6 +53,10 @@ Jugador::Jugador(std::string name, unsigned int fichasIniciales) {
 	this->sig = NULL;
 
 	this->ant = NULL;
+
+	this->posicionesOcupadas = NULL;
+
+	this->posicionesOcupadas = new Lista<Posicion*>();
 }
 
 Jugador::~Jugador() {
@@ -234,4 +242,22 @@ void Jugador::setJuegosGanados () {
 
 int Jugador::getCantidadCartas(){
 	return this->cantidadDeCartas;
+}
+
+void Jugador::agregarPosicionOcupada(Posicion * nuevaPosicion){
+	this->posicionesOcupadas->agregar(nuevaPosicion);
+}
+
+void Jugador::emitirPosicionesOcupadas(){
+	if(this->posicionesOcupadas->estaVacia()){
+		cout << "Aun no has ocupado ninguna posicion!" << endl;
+		return;
+	}
+	else{
+		posicionesOcupadas->iniciarCursor();
+		while(posicionesOcupadas->avanzarCursor()){
+			Posicion * posicionActual = posicionesOcupadas->obtenerCursor();
+			cout << "Coordenada X: " << posicionActual->getX() << " " << "Coordenada Y: " << posicionActual->getY() << " " << "Coordenada Z: " << posicionActual->getZ() << endl;
+		}
+	}
 }
