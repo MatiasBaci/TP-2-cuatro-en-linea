@@ -261,3 +261,15 @@ void Jugador::emitirPosicionesOcupadas(){
 		}
 	}
 }
+
+void Jugador::reiniciarJugador(int cantidadFicha){
+
+	this->fichasRestantes = cantidadFicha;
+
+	this->cantidadDeCartas = 0;
+
+	this->misCartas = NULL;
+
+	this->posicionesOcupadas->reiniciarLista();
+
+}

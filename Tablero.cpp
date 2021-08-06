@@ -206,6 +206,33 @@ bool Tablero::hayGanador (Posicion* ultimaJugada, int cantidadDeFichasParaGanar)
 	return gano;
 }
 
+void Tablero::reiniciarTablero(){
+
+	tablero->iniciarCursor();
+
+	while(tablero->avanzarCursor()) {
+
+		Lista < Lista < Posicion * > * > * fila = tablero->obtenerCursor();
+
+		fila->iniciarCursor();
+
+		while(fila->avanzarCursor()){
+
+			Lista < Posicion * > * columna = fila->obtenerCursor();
+
+			columna->iniciarCursor();
+
+			while(columna->avanzarCursor()){
+
+				Posicion * posicion = columna->obtenerCursor();
+
+				posicion->reiniciarPosicion();
+				
+			}
+		}
+	}
+}
+
 Tablero::~Tablero() {
 
 	if (this->tablero != NULL){
@@ -222,7 +249,7 @@ Tablero::~Tablero() {
 
 				Lista<Posicion*>* columna = fila->obtenerCursor();
 
-				columna->obtenerCursor();
+				columna->iniciarCursor();
 
 				while(columna->avanzarCursor()) {
 

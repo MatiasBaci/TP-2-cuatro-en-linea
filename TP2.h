@@ -184,6 +184,12 @@ class TP2 {
 		 */
 
 		void efectuarCarta(int);
+
+		/*
+		 * pre: -
+		 * post: Reinicia el juego (todos los jugadores vuelven al juego con sus fichas iniciales).
+		 */
+		void reiniciarJuego();
 };
 
 

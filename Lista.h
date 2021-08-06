@@ -115,7 +115,22 @@ template<class T> class Lista {
          *
          */
         T obtenerCursor();
+
+        /*
+         * pre: Existe la lista y esta inicializada. La posicion dada por argumento debe ser valida.
+         *
+         * post: Setea el cursor a la posicion indicada.
+         */
+        
         void setCursor(unsigned int);
+
+        /*
+         * pre: Existe la lista y esta inicializada.
+         *
+         * post: Reinicia la lista (vuelve NULL al puntero al primer elemento). 
+         */
+        void reiniciarLista();
+
         /*
          * post: libera los recursos asociados a la Lista.
          */
@@ -323,6 +338,11 @@ template<class T> T Lista<T>::obtenerCursor() {
 template<class T> void Lista<T>::setCursor( unsigned int posicion){
     Nodo<T> * nuevoCursor = obtenerNodo(posicion);
     this->cursor = nuevoCursor;
+}
+
+template<class T> void Lista<T>::reiniciarLista(){
+    this->primero = NULL;
+    this->tamanio = 0;
 }
 
 template<class T> Lista<T>::~Lista() {

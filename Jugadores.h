@@ -79,6 +79,12 @@ class Jugadores {
 		void emiteUP () const;
 
 		/*
+		 * pre: Existe la lista de jugadores.
+		 * post: Reinicia a las condiciones por defecto de cada jugador.
+		 */
+		void reiniciarJugadores(int);
+		
+		/*
 		 * pre: Existe la lista
 		 * pos: Destruye la lista
 		 */

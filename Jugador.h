@@ -161,6 +161,12 @@ class Jugador {
  		 * post: Emite por consola las posiciones ocupadas por este jugador.
 		 */
 		void emitirPosicionesOcupadas();
+
+		/*
+		 * pre: Existe el jugador.
+		 * post: Reinicia a caso base al jugador.
+		 */
+		void reiniciarJugador(int);
 };
 
 

@@ -89,8 +89,6 @@ class Posicion {
 	 */
 		bool tieneLaMismaFicha (Posicion* posicionAComparar);
 
-
-
 	/*
 	 * Precondicion: No tiene.
 	 * Postcondicion: Devuelve un bool indicando si esta o no ocupado.
@@ -108,6 +106,12 @@ class Posicion {
 	 * Postcondicion: Coloca una ficha en la posicion.
 	 */
 	    void ocupar (char tipoFicha);
+
+	/*
+	 * pre: Existe la posicion.
+	 * post: Reinicia a estado base la posicion.
+	 */
+		void reiniciarPosicion();
 
 	/*
 	 * Destructor

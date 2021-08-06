@@ -6,7 +6,7 @@
  */
 
 #include "Posicion.h"
-
+#include <iostream>
 
 	Posicion::Posicion() {
 
@@ -101,10 +101,30 @@
 		}
 	}
 
+	void Posicion::reiniciarPosicion(){
+
+		this->ocupado = false;
+		
+		this->ficha = ' ';
+
+		for(int i = -1; i <= 1; i++){
+
+			for(int j = -1; j <= 1; j++){
+
+				for(int k = -1; k <= 1; k++){
+
+					Posicion * vecino = this->getVecino(i, j, k);
+
+					if(vecino != NULL){
+
+						vecino->ocupado = false;
+						vecino->ficha = ' ';
+					}
+				}
+			}
+		}
+	}
+
 	Posicion::~Posicion(){
 
 	}
-
-
-
-

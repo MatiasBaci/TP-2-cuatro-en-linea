@@ -40,7 +40,7 @@ int main () {
 
 	char deseaSeguirJugando = 's';
 
-    bool ganado = false;
+    bool ganado;
 
 	codeando21->getTablero()->inicializaTablero(codeando21->getLargo(), codeando21->getAncho(), codeando21->getProfundidad());
 
@@ -52,6 +52,7 @@ int main () {
 
 	while (deseaSeguirJugando == 's'){
 
+		ganado = false;
 		while(cantidadDeJugadoresSalteados < codeando21->getJugadores()->getCantidadDeJugadores() && !ganado) {
 
 			posicionJugada = codeando21->jugar();
@@ -79,9 +80,12 @@ int main () {
 		        }   
             }
 	    }
-        cout << "Desea seguir jugando s/n : " << endl;
+        cout << "Desea seguir jugando? (s/n) : " << endl;
 
 		cin >> deseaSeguirJugando;
+
+		codeando21->reiniciarJuego();
+
 	}
 	return 0;
 }

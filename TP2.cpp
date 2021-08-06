@@ -335,3 +335,9 @@ void TP2::efectuarCarta(int carta){
 
 	}
 }
+
+void TP2::reiniciarJuego(){
+
+	this->getJugadores()->reiniciarJugadores(this->cantidadDeFichasIniciales);
+	this->getTablero()->reiniciarTablero();
+}

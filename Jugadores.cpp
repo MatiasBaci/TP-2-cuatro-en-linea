@@ -224,10 +224,18 @@ void Jugadores::emiteUP () const {
 
 }
 
-/*
-* pre: Existe la lista
-* pos: Destruye la lista
-*/
+void Jugadores::reiniciarJugadores(int cantidadFichasPredeterminada){
+	
+	Jugador * aux = this->primero;
+
+	do{
+
+		aux->reiniciarJugador(cantidadFichasPredeterminada);
+		aux = aux->getSig();
+
+	} while(aux != this->primero && aux != NULL);
+}
+
 Jugadores::~Jugadores() {
 
 	if (listaDeJugadores) {

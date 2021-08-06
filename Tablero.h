@@ -86,6 +86,12 @@ class Tablero {
 		int getProfundidad();
 
 		/*
+		 * pre: Existe el tablero.
+		 * post: Reinicia el tablero a su estado base (ninguna posicion ni vecino ocupado con ninguna ficha).
+		 */
+		void reiniciarTablero();
+
+		/*
 		 * pre : Existe el tablero
 		 * pos: Destruye el tablero
 		 */
