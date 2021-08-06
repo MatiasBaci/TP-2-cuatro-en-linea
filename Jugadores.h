@@ -83,6 +83,12 @@ class Jugadores {
 		 * post: Reinicia a las condiciones por defecto de cada jugador.
 		 */
 		void reiniciarJugadores(int);
+
+		/*
+		 * pre: Existe la lista de jugadores.
+		 * post: Muestra por consola los juegos ganados de todos los jugadores.
+		 */
+		void mostrarJuegosGanados();
 		
 		/*
 		 * pre: Existe la lista

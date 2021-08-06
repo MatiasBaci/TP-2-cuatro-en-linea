@@ -87,5 +87,6 @@ int main () {
 		codeando21->reiniciarJuego();
 
 	}
+	codeando21->getJugadores()->mostrarJuegosGanados();
 	return 0;
 }

@@ -236,6 +236,18 @@ void Jugadores::reiniciarJugadores(int cantidadFichasPredeterminada){
 	} while(aux != this->primero && aux != NULL);
 }
 
+void Jugadores::mostrarJuegosGanados() {
+
+	Jugador * aux = this->primero;
+
+	do{
+
+		cout << aux->getNombre() << ": " << aux->getJuegosGanados() << " juegos ganados en total!" << endl;
+		aux = aux->getSig();
+
+	} while(aux != this->primero && aux != NULL);
+}
+
 Jugadores::~Jugadores() {
 
 	if (listaDeJugadores) {

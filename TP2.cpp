@@ -225,22 +225,23 @@ Posicion* TP2::jugar(){
 
 Posicion* TP2::ubicarFicha (Tablero* tablero, Jugador* jugadorDeTurno, Posicion* posicionSeleccionada){
 
-	int y = 0;
+	int y = this->getLargo() - 1;
+	bool encontrado = false;
+	while(y > 0 && !encontrado) {
 
-	while(!tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ(), tablero->getTablero())->estaOcupado() &&
+		if(tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ(), tablero->getTablero())->estaOcupado()){
+			y--;
+		}
+		else{
+			encontrado = true;
+		}
 
-		  (y < (this->getLargo() - 1))){
-
-		y++;
 	}
-
-	tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ(), tablero->getTablero())
-
-			->ocupar(jugadorDeTurno->getFicha());
+	tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ(), tablero->getTablero())->ocupar(jugadorDeTurno->getFicha());
 
 	jugadorDeTurno->setFichasRestantes(-1);
 
-	return tablero->buscarPosicion(posicionSeleccionada->getX(), y - 1, posicionSeleccionada->getZ(), tablero->getTablero());
+	return tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ(), tablero->getTablero());
 
 }
 
@@ -254,9 +255,9 @@ Posicion* TP2::solicitarJugada (Jugador* jugadorDeTurno, Tablero* tablero) {
 
 	std::cin >> xSeleccionada;
 
-	while(xSeleccionada > getTablero()->getAncho() || xSeleccionada < 1){
+	while(xSeleccionada > getTablero()->getAncho() || xSeleccionada < 0){
 		
-		cout << "Posicion fuera de limites. Vuelva a seleccionar su coordenada X (1 a 10)" << endl;
+		cout << "Posicion fuera de limites. Vuelva a seleccionar su coordenada X (0 a " << ancho_X  - 1 << ")" << endl;
 		cin >> xSeleccionada;
 	}
 
@@ -264,9 +265,9 @@ Posicion* TP2::solicitarJugada (Jugador* jugadorDeTurno, Tablero* tablero) {
 
 	std::cin >> zSeleccionada;
 
-	while(zSeleccionada > getTablero()->getProfundidad() || zSeleccionada < 1){
+	while(zSeleccionada > getTablero()->getProfundidad() || zSeleccionada < 0){
 		
-		cout << "Posicion fuera de limites. Vuelva a seleccionar su coordenada Z (1 a 10)" << endl;
+		cout << "Posicion fuera de limites. Vuelva a seleccionar su coordenada Z (0 a" << profundidad_Z - 1 << ")" << endl;
 		cin >> zSeleccionada;
 	}
 
@@ -274,7 +275,7 @@ Posicion* TP2::solicitarJugada (Jugador* jugadorDeTurno, Tablero* tablero) {
 
 	while ( !hayLugar ) {
 
-		std::cout << "Posicion no disponible, seleccione otra : ";
+		std::cout << "Fila llena. Seleccione otra! ";
 
 		std::cin >> xSeleccionada;
 

@@ -195,7 +195,7 @@ bool Tablero::hayGanador (Posicion* ultimaJugada, int cantidadDeFichasParaGanar)
 
 			for(int k = 0; k < 3; k++){
 
-				if(((cantidadEnLinea[i][j][k] + cantidadEnLinea[k][j][i]) + 1) >= cantidadDeFichasParaGanar){
+				if(((cantidadEnLinea[i][j][k] + cantidadEnLinea[k][j][i]) - 1) >= cantidadDeFichasParaGanar){
 
 					gano = true;
 				}
