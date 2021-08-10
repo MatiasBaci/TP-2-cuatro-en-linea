@@ -104,7 +104,7 @@ class Tablero {
 		 * pre: Existe el tablero
 		 * post: Colorea un pixel en las coordenadas del bmp indicadas, del color de la ficha (RGB) que esta en la posicion indicada
 		 */
-		void colorearPixel(Posicion* posicion, int x_bmp, int y_bmp, char letra);
+		void colorearPixel(int x_bmp, int y_bmp, char letra);
 
 		/*
 		 * pre : Existe el tablero

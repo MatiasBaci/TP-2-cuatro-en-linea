@@ -299,7 +299,7 @@ void Tablero::generarBMP() {
     this->slice.WriteToFile("Tablero_visto_desde_arriba.bmp");
 }
 
-void Tablero::colorearPixel(Posicion* posicion, int x_bmp, int y_bmp, char letra) {
+void Tablero::colorearPixel(int x_bmp, int y_bmp, char letra) {
 
 	RGBApixel pixel;
 	pixel.Alpha = 0;
