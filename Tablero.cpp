@@ -299,30 +299,34 @@ void Tablero::generarBMP() {
     this->slice.WriteToFile("Tablero_visto_desde_arriba.bmp");
 }
 
-void Tablero::colorearPixel(Posicion* posicion, int x_bmp, int y_bmp) {
+void Tablero::colorearPixel(Posicion* posicion, int x_bmp, int y_bmp, char letra) {
 
 	RGBApixel pixel;
 	pixel.Alpha = 0;
-	pixel.Red = 255;
-	pixel.Green = 255;
-	pixel.Blue = 255;
+	pixel.Red = 0;
+	pixel.Green = 0;
+	pixel.Blue = 0;
 
-	std::cout << posicion->queFicha();
-
-	if (posicion->queFicha() == 'R') {
-		pixel.Blue = 0;
-		pixel.Green = 0;
+	if (letra == 'R' || letra == 'r') {
+		pixel.Red = 255;
 	}
-	else if (posicion->queFicha() == 'G') {
-		pixel.Red = 0;
-		pixel.Blue = 0;
+	else if (letra == 'G' || letra == 'g') {
+		pixel.Green = 255;
 	}
-	else if (posicion->queFicha() == 'B') {
-		pixel.Red = 0;
-		pixel.Green = 0;
+	else if (letra == 'B' || letra == 'b') {
+		pixel.Blue = 255;
 	}
-	else if (posicion->queFicha() == 'P') {
-		pixel.Green = 0;
+	else if (letra == 'P' || letra == 'p') {
+		pixel.Blue = 255;
+		pixel.Red = 255;
+	}
+	else if (letra == 'O' || letra == 'o') {
+		pixel.Green = 128;
+		pixel.Red = 255;
+	}
+	else if (letra == 'V' || letra == 'v') {
+		pixel.Blue = 153;
+		pixel.Red = 76;
 	}
 
 	for (int i = x_bmp*30; i < x_bmp*30+30; i++) {

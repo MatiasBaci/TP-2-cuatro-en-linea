@@ -41,13 +41,20 @@ void Jugadores::altaDeUnJugador(int cantFichas) {
 
 		Jugador *nuevo = new Jugador(nombre, cantFichas);
 
-		cout << "Ingrese una letra que sera su ficha durante todo el juego" << endl;
+		cout << "Ingrese una letra que represente su color durante el juego" << endl;
+		cout << "R: rojo" << endl;
+		cout << "G: verde" << endl;
+		cout << "B: azul" << endl;
+		cout << "P: rosa" << endl;
+		cout << "O: naranja" << endl;
+		cout << "V: violeta" << endl;
+		cout << "otra letra: negro" << endl;
 
 		cin >> ficha;
 
 		while(fichaRepetida(ficha)){
 		
-			cout << "Ficha repetida. Ingrese una letra que sera su ficha durante todo el juego" << endl;
+			cout << "Ficha repetida. Ingrese otra letra que represente su color durante el juego" << endl;
 			
 			cin >> ficha;	
 
