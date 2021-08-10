@@ -41,7 +41,7 @@ void Tablero::inicializaTablero(int x, int y, int z) {
 
 	this->profundidad = z;
 
-	this->slice.SetSize(x, z);
+	this->slice.SetSize(x*30, z*30);
 
 	for (int i = 0; i < x; i++) {
 
@@ -296,26 +296,39 @@ int Tablero::getProfundidad(){
 
 void Tablero::generarBMP() {
 
-    this->slice.WriteToFile("Suelo_del_tablero.bmp");
+    this->slice.WriteToFile("Tablero_visto_desde_arriba.bmp");
 }
 
 void Tablero::colorearPixel(Posicion* posicion, int x_bmp, int y_bmp) {
 
 	RGBApixel pixel;
 	pixel.Alpha = 0;
-	pixel.Red = 0;
-	pixel.Green = 0;
-	pixel.Blue = 0;
+	pixel.Red = 255;
+	pixel.Green = 255;
+	pixel.Blue = 255;
+
+	std::cout << posicion->queFicha();
 
 	if (posicion->queFicha() == 'R') {
-		pixel.Red = 255;
+		pixel.Blue = 0;
+		pixel.Green = 0;
 	}
 	else if (posicion->queFicha() == 'G') {
-		pixel.Green = 255;
+		pixel.Red = 0;
+		pixel.Blue = 0;
 	}
 	else if (posicion->queFicha() == 'B') {
-		pixel.Blue = 255;
+		pixel.Red = 0;
+		pixel.Green = 0;
+	}
+	else if (posicion->queFicha() == 'P') {
+		pixel.Green = 0;
 	}
 
-	this->slice.SetPixel(x_bmp, y_bmp, pixel);
+	for (int i = x_bmp*30; i < x_bmp*30+30; i++) {
+		for (int j = y_bmp*30; j < y_bmp*30+30; j++) {
+		
+			this->slice.SetPixel(i, j, pixel);
+		}
+	}
 }
