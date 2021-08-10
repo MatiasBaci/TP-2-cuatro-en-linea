@@ -296,25 +296,6 @@ int Tablero::getProfundidad(){
 
 void Tablero::generarBMP() {
 
-	//Posicion* posicion;
-	
-/* 	for (int i = 0; i < this->largo; i++) {
-        for (int j = 0; j < this->ancho; j++) {
-            
-            pixel = Output.GetPixel(i*30,j*30);
-            pixel.Alpha = 0;
-            pixel.Red = distribution(generator);
-            pixel.Blue = distribution(generator);
-            pixel.Green = distribution(generator);
-
-            DrawArc(Output, i*30, j*30, 13, 0, 360, pixel);
-
-            Output.SetPixel(i,j, pixel);
-        }
-    } */
-	
-	//this->slice.SetPixel(posicion->getX(), posicion->getY(), colorearPixel(posicion));
-
     this->slice.WriteToFile("Suelo_del_tablero.bmp");
 }
 
@@ -326,15 +307,15 @@ void Tablero::colorearPixel(Posicion* posicion, int x_bmp, int y_bmp) {
 	pixel.Green = 0;
 	pixel.Blue = 0;
 
-	/* if (posicion->queFicha() == "R") {
+	if (posicion->queFicha() == 'R') {
 		pixel.Red = 255;
 	}
-	else if (posicion->queFicha() == "G") {
+	else if (posicion->queFicha() == 'G') {
 		pixel.Green = 255;
 	}
-	else if (posicion->queFicha() == "B") {
+	else if (posicion->queFicha() == 'B') {
 		pixel.Blue = 255;
 	}
- */
+
 	this->slice.SetPixel(x_bmp, y_bmp, pixel);
 }
