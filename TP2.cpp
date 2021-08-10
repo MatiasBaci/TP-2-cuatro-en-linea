@@ -239,8 +239,12 @@ Posicion* TP2::ubicarFicha (Tablero* tablero, Jugador* jugadorDeTurno, Posicion*
 	}
 	tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ(), tablero->getTablero())->ocupar(jugadorDeTurno->getFicha());
 	
+	//ahora el bmp es una perspectiva desde arriba de todo el tablero. 
+	//si se quiere que solo sea el techo por ejemplo, se puede poner
+	//if (y == this->getLargo() - 1) {
 	tablero->colorearPixel(posicionSeleccionada, posicionSeleccionada->getX(), posicionSeleccionada->getZ());
-
+	//}
+	
 	tablero->generarBMP();
 
 	jugadorDeTurno->setFichasRestantes(-1);
