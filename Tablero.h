@@ -96,7 +96,7 @@ class Tablero {
 
 		/*
 		 * pre: Existe el tablero
-		 * post: Crea un slice del tablero segun la posicion indicada (para usar con la ultima posicion jugada)
+		 * post: Crea una perspectiva del tablero visto desde arriba
 		 */
 		void generarBMP();
 
