@@ -238,6 +238,10 @@ Posicion* TP2::ubicarFicha (Tablero* tablero, Jugador* jugadorDeTurno, Posicion*
 
 	}
 	tablero->buscarPosicion(posicionSeleccionada->getX(), y, posicionSeleccionada->getZ(), tablero->getTablero())->ocupar(jugadorDeTurno->getFicha());
+	
+	tablero->colorearPixel(posicionSeleccionada, posicionSeleccionada->getX(), posicionSeleccionada->getZ());
+
+	tablero->generarBMP();
 
 	jugadorDeTurno->setFichasRestantes(-1);
 

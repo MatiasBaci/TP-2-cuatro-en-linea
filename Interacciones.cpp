@@ -89,13 +89,13 @@ void opcionesDeJugador(TP2* tp2){
 
 	while(!terminado){
 		
-		std::cout << "Ingrese que opcion desea ingresar:" << std::endl;
-		std::cout << "1: Ver posiciones ocupadas por usted" << std::endl << "2: Ver cartas disponibles" << std::endl << "3: Avanzar turno" << std::endl;
+		std::cout << "Ingrese una opcion:" << std::endl;
+		std::cout << "1: Ver mis posiciones ocupadas" << std::endl << "2: Ver las cartas en mi mano" << std::endl << "3: Terminar mi turno" << std::endl;
 		std::cin >> numeroOpcion;
 
 		while(numeroOpcion < 1 || numeroOpcion > 3){
 			std::cout << "Opcion ingresada no valida. Ingrese nuevamente una de las siguientes opciones:" << std::endl;
-			std::cout << "1: Ver posiciones ocupadas por usted" << std::endl << "2: Ver cartas disponibles" << std::endl << "3: Avanzar turno" << std::endl;
+			std::cout << "1: Ver mis posiciones ocupadas" << std::endl << "2: Ver las cartas en mi mano" << std::endl << "3: Terminar mi turno" << std::endl;
 			std::cin >> numeroOpcion;
 		}
 

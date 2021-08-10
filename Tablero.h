@@ -8,6 +8,8 @@
 #ifndef SRC_TABLERO_H_
 #define SRC_TABLERO_H_
 
+#include "EasyBMP.h"
+
 #include "Posicion.h"
 
 #include "Lista.h"
@@ -22,6 +24,7 @@ class Tablero {
 		int largo;
 		int ancho;
 		int profundidad;
+		BMP slice;
 
 	public:
 
@@ -90,6 +93,18 @@ class Tablero {
 		 * post: Reinicia el tablero a su estado base (ninguna posicion ni vecino ocupado con ninguna ficha).
 		 */
 		void reiniciarTablero();
+
+		/*
+		 * pre: Existe el tablero
+		 * post: Crea un slice del tablero segun la posicion indicada (para usar con la ultima posicion jugada)
+		 */
+		void generarBMP();
+
+		/*
+		 * pre: Existe el tablero
+		 * post: Colorea un pixel en las coordenadas del bmp indicadas, del color de la ficha (RGB) que esta en la posicion indicada
+		 */
+		void colorearPixel(Posicion* posicion, int x_bmp, int y_bmp);
 
 		/*
 		 * pre : Existe el tablero

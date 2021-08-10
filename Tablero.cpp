@@ -28,6 +28,9 @@ Tablero::Tablero() {
 
 	this->profundidad = 0;
 
+	this->slice.SetSize(10, 10);
+
+	this->slice.SetBitDepth(8);
 }
 
 void Tablero::inicializaTablero(int x, int y, int z) {
@@ -37,6 +40,8 @@ void Tablero::inicializaTablero(int x, int y, int z) {
 	this->ancho = x;
 
 	this->profundidad = z;
+
+	this->slice.SetSize(x, z);
 
 	for (int i = 0; i < x; i++) {
 
@@ -287,4 +292,49 @@ int Tablero::getLargo(){
 int Tablero::getProfundidad(){
 
 	return this->profundidad;
+}
+
+void Tablero::generarBMP() {
+
+	//Posicion* posicion;
+	
+/* 	for (int i = 0; i < this->largo; i++) {
+        for (int j = 0; j < this->ancho; j++) {
+            
+            pixel = Output.GetPixel(i*30,j*30);
+            pixel.Alpha = 0;
+            pixel.Red = distribution(generator);
+            pixel.Blue = distribution(generator);
+            pixel.Green = distribution(generator);
+
+            DrawArc(Output, i*30, j*30, 13, 0, 360, pixel);
+
+            Output.SetPixel(i,j, pixel);
+        }
+    } */
+	
+	//this->slice.SetPixel(posicion->getX(), posicion->getY(), colorearPixel(posicion));
+
+    this->slice.WriteToFile("Suelo_del_tablero.bmp");
+}
+
+void Tablero::colorearPixel(Posicion* posicion, int x_bmp, int y_bmp) {
+
+	RGBApixel pixel;
+	pixel.Alpha = 0;
+	pixel.Red = 0;
+	pixel.Green = 0;
+	pixel.Blue = 0;
+
+	/* if (posicion->queFicha() == "R") {
+		pixel.Red = 255;
+	}
+	else if (posicion->queFicha() == "G") {
+		pixel.Green = 255;
+	}
+	else if (posicion->queFicha() == "B") {
+		pixel.Blue = 255;
+	}
+ */
+	this->slice.SetPixel(x_bmp, y_bmp, pixel);
 }
